@@ -1,107 +1,163 @@
-"use client";
+import { createClient } from "./utils/supabase/server";
+import Link from "next/link";
+import { FaBuilding, FaDraftingCompass, FaTools } from "react-icons/fa";
+import Hero from "./components/Hero";
+import AboutSection from "./components/AboutSection";
+import ServicesSection from "./components/ServicesSection";
+import Footer from "./components/Footer";
+import Testimonials from "./components/Testimonials";
 
-import Link from 'next/link';
-import { useAuth } from './components/AuthProvider';
+export default async function Home() {
+  const supabase = await createClient();
 
-export default function LandingPage() {
-  const { user } = useAuth();
+  // جلب آخر 3 مشاريع
+  const { data: projects } = await supabase
+    .from("projects")
+    .select("*")
+    .limit(3)
+    .order("created_at", { ascending: false });
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white overflow-hidden selection:bg-indigo-500 selection:text-white">
-      
-      {/* خلفية زخرفية عامة */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
-        <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-blue-900/20 rounded-full blur-[100px]"></div>
-        <div className="absolute bottom-[-10%] left-[-5%] w-[500px] h-[500px] bg-purple-900/20 rounded-full blur-[100px]"></div>
-        <div className="absolute top-[40%] left-[50%] transform -translate-x-1/2 w-[800px] h-[300px] bg-indigo-900/10 rounded-full blur-[120px]"></div>
-      </div>
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+        {/* خلفية بتأثير تدرج داكن */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
+        <div className="absolute inset-0 bg-[url('/hero-bg.jpg')] bg-cover bg-center opacity-40" />
 
-      {/* المحتوى الرئيسي */}
-      <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
-        
-        {/* الشعار والنص الترحيبي */}
-        <div className="animate-fade-in-up">
-          <span className="inline-block py-1 px-3 rounded-full bg-indigo-900/30 border border-indigo-700/50 text-indigo-300 text-sm font-medium mb-6">
-            ✨ طريقك نحو الجامعة يبدأ من هنا
-          </span>
-          <h1 className="text-5xl md:text-7xl font-black mb-6 tracking-tight leading-tight">
-            تفوّق في البكالوريا <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500">
-              في جميع المواد
-            </span>
+        <div className="relative z-20 text-center max-w-4xl px-4">
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+            نبني رؤيتك.. حجراً تلو الآخر
           </h1>
-          <p className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto mb-10 leading-relaxed">
-            منصة تعليمية متكاملة تتيح لك تنظيم دراستك لمواد الرياضيات، الفيزياء، العلوم، واللغات. 
-            تتبع تقدمك لحظة بلحظة، واجمع النقاط، ونافس زملاءك لتكون الأول على الدفعة.
+          <p className="text-xl text-text-muted mb-8 leading-relaxed">
+            مكتب هندسي متكامل في مصياف. ندمج بين عراقة البناء وحداثة التصميم
+            لنقدم لك مساحات سكنية وتجارية استثنائية.
+          </p>
+          <div className="flex gap-4 justify-center">
+            <Link
+              href="/contact"
+              className="px-8 py-3 bg-primary hover:bg-blue-600 rounded-full font-bold transition"
+            >
+              احجز استشارة
+            </Link>
+            <Link
+              href="/portfolio"
+              className="px-8 py-3 border border-white/20 hover:bg-white/10 rounded-full font-bold transition backdrop-blur-sm"
+            >
+              شاهد أعمالنا
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Snippet */}
+      <section className="py-20 px-4 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="p-8 rounded-2xl bg-surface border border-white/5 hover:border-accent/50 transition group">
+          <FaDraftingCompass className="text-4xl text-accent mb-4 group-hover:scale-110 transition" />
+          <h3 className="text-2xl font-bold mb-2">التصميم المعماري</h3>
+          <p className="text-text-muted">
+            مخططات تفصيلية، منظور ثلاثي الأبعاد، وتراخيص بناء.
           </p>
         </div>
+        <div className="p-8 rounded-2xl bg-surface border border-white/5 hover:border-accent/50 transition group">
+          <FaTools className="text-4xl text-accent mb-4 group-hover:scale-110 transition" />
+          <h3 className="text-2xl font-bold mb-2">الإكساء والديكور</h3>
+          <p className="text-text-muted">
+            تحويل المساحات الرمادية إلى تحف فنية بأفضل المواد.
+          </p>
+        </div>
+        <div className="p-8 rounded-2xl bg-surface border border-white/5 hover:border-accent/50 transition group">
+          <FaBuilding className="text-4xl text-accent mb-4 group-hover:scale-110 transition" />
+          <h3 className="text-2xl font-bold mb-2">الإنشاءات</h3>
+          <p className="text-text-muted">
+            تنفيذ المباني السكنية والتجارية بأعلى معايير السلامة.
+          </p>
+        </div>
+      </section>
 
-        {/* أزرار الإجراء */}
-        <div className="flex flex-col sm:flex-row gap-4 w-full justify-center mb-20">
-          {user ? (
-            <Link 
-              href="/dashboard" 
-              className="px-8 py-4 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg shadow-indigo-500/25 flex items-center justify-center gap-2"
+      {/* Featured Projects */}
+      <section className="py-20 bg-surface/30">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex justify-between items-end mb-12">
+            <h2 className="text-3xl font-bold border-r-4 border-accent pr-4">
+              آخر مشاريعنا
+            </h2>
+            <Link
+              href="/portfolio"
+              className="text-primary hover:text-accent transition"
             >
-              <span>الذهاب للمواد الدراسية</span>
-              <span>📚</span>
+              عرض الكل &larr;
             </Link>
-          ) : (
-            <>
-              <Link 
-                href="/login" 
-                className="px-8 py-4 bg-white text-gray-900 hover:bg-gray-100 rounded-xl font-bold text-lg transition-all transform hover:scale-105 shadow-lg flex items-center justify-center"
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {projects?.map((project) => (
+              <div
+                key={project.id}
+                className="group relative aspect-4/3 overflow-hidden rounded-xl bg-gray-900"
               >
-                أنشئ حساباً مجانياً
-              </Link>
-              <Link 
-                href="/login" 
-                className="px-8 py-4 bg-transparent border border-gray-700 hover:border-gray-500 text-white rounded-xl font-bold text-lg transition-all flex items-center justify-center"
-              >
-                تسجيل الدخول
-              </Link>
-            </>
-          )}
+                {/* يفترض وجود صور في قاعدة البيانات */}
+                <img
+                  src={project.image_url}
+                  alt={project.title}
+                  className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                  <span className="text-accent text-sm font-medium">
+                    {project.category}
+                  </span>
+                  <h3 className="text-xl font-bold text-white mt-1">
+                    {project.title}
+                  </h3>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
+      </section>
 
-        {/* قسم الميزات (Grid) */}
-        <div className="grid md:grid-cols-3 gap-8 w-full max-w-6xl text-right">
-          
-          {/* ميزة 1: الشمولية */}
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-blue-500/50 transition-colors group">
-            <div className="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-              📚
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-white">كل المواد في مكان واحد</h3>
-            <p className="text-gray-400">نظم وقتك بين الرياضيات، الفيزياء، العلوم، واللغات. كل مادة لها مسارها الخاص.</p>
+      {/* 1. القسم الرئيسي */}
+      <Hero />
+
+      {/* 2. قسم من نحن */}
+      <AboutSection />
+
+      {/* باقي الأقسام لاحقاً */}
+      <ServicesSection />
+      <Testimonials />
+
+      {/* 6. CTA Banner (شريط دعوة للعمل) */}
+      <section className="py-16 bg-blue-600 relative overflow-hidden">
+        {/* زخرفة خلفية */}
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"></div>
+
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            هل أنت جاهز لبناء منزل أحلامك؟
+          </h2>
+          <p className="text-blue-100 text-lg mb-8">
+            دعنا نناقش مشروعك القادم. استشارة أولية مجانية لتقييم التكلفة والمدة
+            الزمنية.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="https://wa.me/963900000000"
+              className="bg-yellow-500 text-slate-900 px-8 py-3 rounded-full font-bold hover:bg-yellow-400 transition shadow-lg"
+            >
+              تواصل عبر واتساب
+            </Link>
+            <Link
+              href="/contact"
+              className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-full font-bold hover:bg-white hover:text-blue-600 transition"
+            >
+              اتصل بنا
+            </Link>
           </div>
-
-          {/* ميزة 2: المتابعة الذكية */}
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-green-500/50 transition-colors group">
-            <div className="w-12 h-12 bg-green-900/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-              🧠
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-white">قيم فهمك</h3>
-            <p className="text-gray-400">لا تكتفِ بـ{ "تم"}. حدد مدى ثقتك في كل درس (من{ "ضائع" }إلى {"واثق"}) لتعرف ما يحتاج للمراجعة.</p>
-          </div>
-
-          {/* ميزة 3: التلعيب والمنافسة */}
-          <div className="bg-gray-900/50 p-8 rounded-2xl border border-gray-800 hover:border-yellow-500/50 transition-colors group">
-            <div className="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center text-2xl mb-4 group-hover:scale-110 transition-transform">
-              🏆
-            </div>
-            <h3 className="text-xl font-bold mb-2 text-white">كن الأسطورة</h3>
-            <p className="text-gray-400">طور {"شخصيتك الدراسية"}. كل درس تنهيه يزيد من مستواك ويرفع ترتيبك بين الطلاب.</p>
-          </div>
-
         </div>
+      </section>
 
-      </div>
-
-      {/* تذييل بسيط */}
-      <footer className="border-t border-gray-800 py-8 text-center text-gray-500 text-sm">
-        <p>© 2024 منصة البكالوريا التعليمية. جميع الحقوق محفوظة.</p>
-      </footer>
-    </div>
+      {/* 7. Footer */}
+      <Footer />
+    </main>
   );
 }

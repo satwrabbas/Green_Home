@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* ألوان احترافية داكنة (Dark Slate & Gold/Blue) */
+  --color-background: #0f172a; /* Slate 900 */
+  --color-surface: #1e293b;    /* Slate 800 */
+  --color-primary: #3b82f6;    /* Blue 500 */
+  --color-accent: #eab308;     /* Yellow 500 (Gold-like) */
+  --color-text-main: #f8fafc;  /* Slate 50 */
+  --color-text-muted: #94a3b8; /* Slate 400 */
+  
+  --font-display: "Tajawal", sans-serif; /* خط عربي هندسي */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* إعدادات الموقع الافتراضية */
+@layer base {
+    html {
+    scroll-behavior: smooth; /* هذا السطر هو السر */
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-main);
+    font-family: var(--font-display);
+    direction: rtl; /* لأن الموقع عربي */
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* تنسيقات مخصصة للصور والبطاقات */
+.glass-card {
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
