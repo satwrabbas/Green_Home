@@ -4,6 +4,7 @@ import {
   FaEnvelope,
   FaHome,
   FaSignOutAlt,
+  FaQuoteRight,
 } from "react-icons/fa";
 
 export default function AdminLayout({
@@ -35,6 +36,14 @@ export default function AdminLayout({
           >
             <FaEnvelope />
             <span>رسائل العملاء</span>
+          </Link>
+
+          <Link
+            href="/admin/testimonials"
+            className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-white/5 hover:text-white rounded-lg transition"
+          >
+            <FaQuoteRight /> {/* أو أي أيقونة تفضلها */}
+            <span>إدارة الآراء</span>
           </Link>
 
           <Link

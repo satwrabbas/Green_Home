@@ -181,12 +181,14 @@ export default function ContactPage() {
             </div>
 
             {/* الخريطة */}
-            <div className="rounded-2xl overflow-hidden border border-white/10 h-64 shadow-lg">
+            {/* الخريطة */}
+            <div className="rounded-2xl overflow-hidden border border-white/10 h-[450px] shadow-lg relative z-0">
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d52573.49752528394!2d36.31174644026338!3d35.06527506692994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1523e1903698651b%3A0x6331908d72c47d7!2sMasyaf%2C%20Syria!5e0!3m2!1sen!2s!4v1700000000000!5m2!1sen!2s" 
+                title="موقع المكتب"
+                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4285.4664205964045!2d36.33783050962611!3d35.07056459461836!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15239361bdb9122d%3A0x194d6fc3d2c60ff6!2sOur%20Home!5e1!3m2!1sen!2sus!4v1765527215020!5m2!1sen!2sus" 
                 width="100%" 
                 height="100%" 
-                style={{ border: 0, filter: 'grayscale(100%) invert(92%) contrast(83%)' }} 
+                style={{ border: 0 }} 
                 allowFullScreen={true} 
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"

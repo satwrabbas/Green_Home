@@ -1,8 +1,92 @@
-import Link from 'next/link';
-import { FaArrowDown, FaCheckCircle, FaProjectDiagram, FaHardHat } from 'react-icons/fa';
+import { createClient } from "../utils/supabase/server";
+import Link from "next/link";
+import { FaArrowDown, FaCheckCircle, FaProjectDiagram, FaHardHat, FaDraftingCompass, FaTools } from 'react-icons/fa';
+import { FaBuilding } from 'react-icons/fa6';
+import { FaFileDownload, FaStar } from 'react-icons/fa';
 
-export default function Hero() {
+export default async function Hero() {
+    const supabase = await createClient();
+  
+    // جلب آخر 3 مشاريع
+    const { data: projects } = await supabase
+      .from("projects")
+      .select("*")
+      .limit(3)
+      .order("created_at", { ascending: false });
   return (
+    <div>
+
+
+    <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+              {/* خلفية بتأثير تدرج داكن */}
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
+              <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
+      
+              <div className="relative z-20 text-center max-w-4xl px-4">
+                <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                  نبني رؤيتك.. حجراً تلو الآخر
+                </h1>
+                <p className="text-xl text-text-muted mb-8 leading-relaxed">
+                  مكتب هندسي متكامل في مصياف. ندمج بين عراقة البناء وحداثة التصميم
+                  لنقدم لك مساحات سكنية وتجارية استثنائية.
+                </p>
+                <div className="flex gap-4 justify-center">
+                  <Link
+                    href="/contact"
+                    className="px-8 py-3 bg-primary hover:bg-blue-600 rounded-full font-bold transition"
+                  >
+                    احجز استشارة
+                  </Link>
+                  <Link
+                    href="/portfolio"
+                    className="px-8 py-3 border border-white/20 hover:bg-white/10 rounded-full font-bold transition backdrop-blur-sm"
+                  >
+                    شاهد أعمالنا
+                  </Link>
+                </div>
+              </div>
+            </section>
+            {/* Featured Projects */}
+            <section className="py-20 bg-surface/30">
+              <div className="max-w-7xl mx-auto px-4">
+                <div className="flex justify-between items-end mb-12">
+                  <h2 className="text-3xl font-bold border-r-4 border-accent pr-4">
+                    آخر مشاريعنا
+                  </h2>
+                  <Link
+                    href="/portfolio"
+                    className="text-primary hover:text-accent transition"
+                  >
+                    عرض الكل &larr;
+                  </Link>
+                </div>
+      
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {projects?.map((project) => (
+                    <div
+                      key={project.id}
+                      className="group relative aspect-4/3 overflow-hidden rounded-xl bg-gray-900"
+                    >
+                      {/* يفترض وجود صور في قاعدة البيانات */}
+                      <img
+                        src={project.image_url}
+                        alt={project.title}
+                        className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
+                        <span className="text-accent text-sm font-medium">
+                          {project.category}
+                        </span>
+                        <h3 className="text-xl font-bold text-white mt-1">
+                          {project.title}
+                        </h3>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </section>
+      
     <section id="home" className="relative h-screen w-full overflow-hidden flex items-center justify-center">
       
       {/* 1. الخلفية (صورة المشروع) */}
@@ -35,19 +119,31 @@ export default function Hero() {
         </p>
 
         {/* الأزرار (CTA) */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link 
-            href="/contact" 
-            className="w-full sm:w-auto px-8 py-4 bg-yellow-500 hover:bg-yellow-400 text-slate-900 font-bold rounded-lg transition-all transform hover:-translate-y-1 shadow-[0_0_20px_rgba(234,179,8,0.4)]"
+        {/* الأزرار (CTA) */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8">
+          
+          {/* زر تحميل البروفايل: الزر الرئيسي (Primary Action) */}
+          {/* ملاحظة: تأكد من وجود ملف باسم company-profile.pdf داخل مجلد public */}
+          <a 
+            href="/company-profile.pdf" 
+            target="_blank"             // لفتح الملف في لسان جديد
+            rel="noopener noreferrer"
+            className="group w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-slate-900 font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] flex items-center justify-center gap-3"
           >
-            اطلب استشارة مجانية
-          </Link>
+            <span>تحميل بروفايل الشركة</span>
+            {/* أيقونة التحميل مع حركة بسيطة عند التمرير */}
+            <FaFileDownload className="text-lg transition-transform group-hover:scale-110" />
+          </a>
+
+          {/* زر آراء العملاء: الزر الثانوي (Secondary Action) */}
           <Link 
-            href="/portfolio" 
-            className="w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/20 text-white font-bold rounded-lg backdrop-blur-sm transition-all"
+            href="/#testimonials" 
+            className="group w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-yellow-500/50 text-white font-bold rounded-xl backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-3"
           >
-            شاهد أعمالنا السابقة
+            <FaStar className="text-yellow-500 group-hover:text-yellow-400 transition-colors" />
+            <span>ماذا يقول عملاؤنا؟</span>
           </Link>
+          
         </div>
       </div>
 
@@ -103,5 +199,6 @@ export default function Hero() {
       </div>
 
     </section>
+        </div>
   );
 }

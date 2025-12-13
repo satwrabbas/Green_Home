@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation"; // لمعرفة الصفحة الحالية
 import { FaBars, FaTimes, FaBuilding } from "react-icons/fa"; // أيقونات القائمة
 import { FaPhoneFlip } from "react-icons/fa6"; // أيقونة الهاتف
@@ -11,7 +12,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false); // حالة التمرير (Scroll)
   const pathname = usePathname(); // الرابط الحالي
 
- 
   // مراقبة التمرير لتغيير خلفية الناف بار
   useEffect(() => {
     const handleScroll = () => {
@@ -24,7 +24,7 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
+  if (pathname.startsWith("/admin") || pathname.startsWith("/login")) {
     return null;
   }
   const navLinks = [
@@ -37,19 +37,32 @@ export default function Navbar() {
   ];
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
-          ? "bg-slate-900/80 backdrop-blur-md border-b border-white/10 shadow-lg py-3"
-          : "bg-transparent py-4"
+          ? "bg-slate-900/80 backdrop-blur-md border-white/10 shadow-lg py-3"
+          : "bg-transparent border-transparent py-5"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           {/* الشعار (Logo) */}
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="bg-yellow-500 p-2 rounded-lg text-slate-900 group-hover:bg-yellow-400 transition">
-              <FaBuilding size={24} />
+
+          {/* ... داخل الـ Navbar ... */}
+          <Link href="/" className="flex items-center gap-3 group">
+            {/* اللوجو الجديد */}
+            <div className="relative w-12 h-12">
+              {" "}
+              {/* هنا نتحكم بالحجم الخارجي */}
+              <Image
+                src="/logo.svg" // تأكد أن الاسم مطابق للملف في public
+                alt="ABCE-S Logo"
+                fill // يملأ الـ div الأب
+                className="object-cover rounded-xl group-hover:scale-105 transition duration-300" // rounded-xl ليتناسب مع زوايا اللوجو
+                sizes="(max-width: 768px) 48px, 48px"
+              />
             </div>
+
+            {/* النص بجانب اللوجو */}
             <div className="flex flex-col">
               <span className="text-xl font-bold text-white tracking-wide">
                 ABCE-S
