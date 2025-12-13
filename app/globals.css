@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* ألوان احترافية داكنة (Dark Slate & Gold/Blue) */
-  --color-background: #0f172a; /* Slate 900 */
-  --color-surface: #1e293b;    /* Slate 800 */
-  --color-primary: #3b82f6;    /* Blue 500 */
-  --color-accent: #eab308;     /* Yellow 500 (Gold-like) */
-  --color-text-main: #f8fafc;  /* Slate 50 */
-  --color-text-muted: #94a3b8; /* Slate 400 */
   
-  --font-display: "Tajawal", sans-serif; /* خط عربي هندسي */
+  --color-background: #0f172a; 
+  --color-surface: #1e293b;    
+  --color-primary: #3b82f6;    
+  --color-accent: #eab308;     
+  --color-text-main: #f8fafc;  
+  --color-text-muted: #94a3b8; 
+  
+  --font-display: "Tajawal", sans-serif; 
 }
 
-/* إعدادات الموقع الافتراضية */
+
 @layer base {
     html {
-    scroll-behavior: smooth; /* هذا السطر هو السر */
+    scroll-behavior: smooth; 
   }
   body {
     background-color: var(--color-background);
     color: var(--color-text-main);
     font-family: var(--font-display);
-    direction: rtl; /* لأن الموقع عربي */
+    direction: rtl; 
   }
 }
 
-/* تنسيقات مخصصة للصور والبطاقات */
+
 .glass-card {
   background: rgba(30, 41, 59, 0.7);
   backdrop-filter: blur(10px);

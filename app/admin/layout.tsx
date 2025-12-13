@@ -14,7 +14,6 @@ export default function AdminLayout({
 }) {
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col md:flex-row">
-      {/* القائمة الجانبية (Sidebar) */}
       <aside className="w-full md:w-64 bg-slate-900 border-l border-white/5 flex-shrink-0">
         <div className="p-6 border-b border-white/5">
           <h2 className="text-xl font-bold text-white">لوحة التحكم</h2>
@@ -42,7 +41,7 @@ export default function AdminLayout({
             href="/admin/testimonials"
             className="flex items-center gap-3 px-4 py-3 text-slate-300 hover:bg-white/5 hover:text-white rounded-lg transition"
           >
-            <FaQuoteRight /> {/* أو أي أيقونة تفضلها */}
+            <FaQuoteRight />
             <span>إدارة الآراء</span>
           </Link>
 
@@ -66,7 +65,6 @@ export default function AdminLayout({
         </nav>
       </aside>
 
-      {/* المحتوى المتغير */}
       <main className="flex-1 p-4 md:p-8 overflow-y-auto">{children}</main>
     </div>
   );

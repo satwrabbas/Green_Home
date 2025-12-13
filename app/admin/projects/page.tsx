@@ -1,13 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { createClient } from "../../utils/supabase/server";
-import { deleteProject } from "../actions"; // تأكد أن ملف actions.ts بجانب هذا الملف
+import { deleteProject } from "../actions";
 import { FaPlus, FaTrash, FaMapMarkerAlt, FaEdit } from "react-icons/fa";
 
 export default async function ProjectsDashboard() {
   const supabase = await createClient();
 
-  // جلب المشاريع (الأحدث أولاً)
   const { data: projects } = await supabase
     .from("projects")
     .select("*")
@@ -15,7 +14,6 @@ export default async function ProjectsDashboard() {
 
   return (
     <div>
-      {/* الترويسة: العنوان + زر إضافة مشروع جديد */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
           <h1 className="text-3xl font-bold text-white">إدارة المشاريع</h1>
@@ -72,7 +70,6 @@ export default async function ProjectsDashboard() {
                 </div>
               </div>
 
-              {/* تفاصيل المشروع */}
               <div className="p-4 flex-1 flex flex-col">
                 <h3 className="text-lg font-bold text-white mb-2 line-clamp-1">
                   {project.title}
@@ -85,7 +82,6 @@ export default async function ProjectsDashboard() {
                   </span>
                 </div>
 
-                {/* أزرار التحكم (معاينة - تعديل - حذف) */}
                 <div className="mt-auto pt-4 border-t border-white/5 flex justify-between items-center">
                   <Link
                     href={`/portfolio/${project.id}`}
@@ -96,7 +92,6 @@ export default async function ProjectsDashboard() {
                   </Link>
 
                   <div className="flex gap-2">
-                    {/* زر التعديل */}
                     <Link
                       href={`/admin/projects/${project.id}/edit`}
                       className="flex items-center gap-1 text-yellow-500 hover:text-yellow-400 text-sm px-3 py-1.5 rounded-lg hover:bg-yellow-500/10 transition"
@@ -105,7 +100,6 @@ export default async function ProjectsDashboard() {
                       <span>تعديل</span>
                     </Link>
 
-                    {/* زر الحذف */}
                     <form action={deleteProject}>
                       <input type="hidden" name="id" value={project.id} />
                       <input
@@ -116,8 +110,6 @@ export default async function ProjectsDashboard() {
                       <button
                         type="submit"
                         className="flex items-center gap-1 text-red-500 hover:text-red-400 text-sm px-3 py-1.5 rounded-lg hover:bg-red-500/10 transition"
-                        // ملاحظة: لإضافة رسالة تأكيد (confirm) يفضل تحويل هذا الزر لـ Client Component منفصل،
-                        // ولكن للسرعة الآن سيعمل الحذف مباشرة.
                       >
                         <FaTrash size={14} />
                         <span>حذف</span>

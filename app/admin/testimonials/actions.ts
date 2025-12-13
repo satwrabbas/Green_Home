@@ -8,10 +8,10 @@ export async function addTestimonial(formData: FormData) {
 
   console.log("--- 1. Starting Upload Process ---");
 
-  // جلب الملف
+  
   const imageFile = formData.get('image') as File;
   
-  // طباعة معلومات الملف للتأكد أنه وصل
+  
   console.log("File Name:", imageFile?.name);
   console.log("File Size:", imageFile?.size);
   console.log("File Type:", imageFile?.type);
@@ -21,12 +21,12 @@ export async function addTestimonial(formData: FormData) {
   if (imageFile && imageFile.size > 0) {
     console.log("--- 2. File found, attempting upload ---");
     
-    // تنظيف اسم الملف
+    
     const fileName = `${Date.now()}-${imageFile.name.replace(/\s/g, '_')}`;
     
-    // حاول الرفع واطبع النتيجة
-    // ملاحظة: تأكد أن اسم البوكيت هنا يطابق الموجود في Supabase
-    // جربنا هنا كتابته بأحرف صغيرة، إذا كان عندك مختلفاً غيره
+    
+    
+    
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from('testimonials') 
       .upload(fileName, imageFile, { upsert: false });
@@ -48,7 +48,7 @@ export async function addTestimonial(formData: FormData) {
     console.log("⚠️ No file detected in formData or file size is 0");
   }
 
-  // الحفظ في قاعدة البيانات
+  
   const data = {
     client_name: formData.get('client_name'),
     role: formData.get('role'),

@@ -1,24 +1,22 @@
-import { createClient } from '../../utils/supabase/server';
-import { deleteInquiry, markAsContacted } from '../actions';
-import { FaWhatsapp, FaTrash, FaCheckDouble, FaClock } from 'react-icons/fa';
+import { createClient } from "../../utils/supabase/server";
+import { deleteInquiry, markAsContacted } from "../actions";
+import { FaWhatsapp, FaTrash, FaCheckDouble, FaClock } from "react-icons/fa";
 
 export default async function InquiriesPage() {
   const supabase = await createClient();
 
-  // جلب الرسائل مرتبة من الأحدث للأقدم
   const { data: inquiries } = await supabase
-    .from('inquiries')
-    .select('*')
-    .order('created_at', { ascending: false });
+    .from("inquiries")
+    .select("*")
+    .order("created_at", { ascending: false });
 
-  // تنسيق التاريخ
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString('ar-SY', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+    return new Date(dateString).toLocaleDateString("ar-SY", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
@@ -31,38 +29,39 @@ export default async function InquiriesPage() {
         </div>
       </header>
 
-      {(!inquiries || inquiries.length === 0) ? (
+      {!inquiries || inquiries.length === 0 ? (
         <div className="text-center py-20 bg-slate-900 rounded-2xl border border-white/5 border-dashed">
-          <p className="text-slate-500 text-lg">لا توجد رسائل جديدة حتى الآن.</p>
+          <p className="text-slate-500 text-lg">
+            لا توجد رسائل جديدة حتى الآن.
+          </p>
         </div>
       ) : (
         <div className="grid gap-4">
           {inquiries.map((item) => (
-            <div 
-              key={item.id} 
+            <div
+              key={item.id}
               className={`relative p-6 rounded-xl border transition-all ${
-                item.status === 'new' 
-                  ? 'bg-slate-800/80 border-yellow-500/50 shadow-[0_0_15px_rgba(234,179,8,0.1)]' 
-                  : 'bg-slate-900 border-white/5 opacity-75 hover:opacity-100'
+                item.status === "new"
+                  ? "bg-slate-800/80 border-yellow-500/50 shadow-[0_0_15px_rgba(234,179,8,0.1)]"
+                  : "bg-slate-900 border-white/5 opacity-75 hover:opacity-100"
               }`}
             >
               <div className="flex flex-col md:flex-row justify-between gap-4">
-                
-                {/* معلومات العميل */}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <h3 className="text-xl font-bold text-white">{item.name}</h3>
-                    {item.status === 'new' && (
+                    <h3 className="text-xl font-bold text-white">
+                      {item.name}
+                    </h3>
+                    {item.status === "new" && (
                       <span className="px-2 py-0.5 bg-yellow-500 text-slate-900 text-xs font-bold rounded-full animate-pulse">
                         جديد
                       </span>
                     )}
                   </div>
-                  
+
                   <div className="flex items-center gap-4 text-sm text-slate-400 mb-4">
                     <span className="flex items-center gap-1">
-                       {/* إزالة الصفر الأول من الرقم السوري إذا وجد لتجهيزه للواتساب */}
-                       {item.phone}
+                      {item.phone}
                     </span>
                     <span className="flex items-center gap-1">
                       <FaClock size={12} />
@@ -75,12 +74,11 @@ export default async function InquiriesPage() {
                   </p>
                 </div>
 
-                {/* أزرار التحكم */}
                 <div className="flex md:flex-col gap-2 justify-center border-t md:border-t-0 md:border-r border-white/10 pt-4 md:pt-0 md:pr-4 mt-4 md:mt-0">
-                  
-                  {/* زر واتساب */}
-                  <a 
-                    href={`https://wa.me/${item.phone?.replace(/^0+/, '963').replace(/\s/g, '')}`} 
+                  <a
+                    href={`https://wa.me/${item.phone
+                      ?.replace(/^0+/, "963")
+                      .replace(/\s/g, "")}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-bold transition"
@@ -89,11 +87,10 @@ export default async function InquiriesPage() {
                     <span>رد واتساب</span>
                   </a>
 
-                  {/* زر تم التواصل (Server Action) */}
-                  {item.status === 'new' && (
+                  {item.status === "new" && (
                     <form action={markAsContacted}>
                       <input type="hidden" name="id" value={item.id} />
-                      <button 
+                      <button
                         type="submit"
                         className="w-full flex items-center justify-center gap-2 bg-blue-600/20 hover:bg-blue-600 text-blue-400 hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition border border-blue-600/30"
                       >
@@ -103,10 +100,9 @@ export default async function InquiriesPage() {
                     </form>
                   )}
 
-                  {/* زر الحذف (Server Action) */}
                   <form action={deleteInquiry}>
                     <input type="hidden" name="id" value={item.id} />
-                    <button 
+                    <button
                       type="submit"
                       className="w-full flex items-center justify-center gap-2 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white px-4 py-2 rounded-lg text-sm font-bold transition border border-red-600/20"
                     >
@@ -114,7 +110,6 @@ export default async function InquiriesPage() {
                       <span>حذف</span>
                     </button>
                   </form>
-
                 </div>
               </div>
             </div>

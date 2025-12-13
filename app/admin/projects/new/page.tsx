@@ -15,10 +15,9 @@ import {
 
 export default function NewProject() {
   const [uploading, setUploading] = useState(false);
-  
-  // 1. متغيرات الحالة الجديدة لتتبع التقدم
-  const [progress, setProgress] = useState(0); 
-  const [statusMessage, setStatusMessage] = useState(""); 
+
+  const [progress, setProgress] = useState(0);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const router = useRouter();
 
@@ -36,7 +35,6 @@ export default function NewProject() {
     const formData = new FormData(e.currentTarget);
 
     try {
-      // 1. تجهيز البيانات الأساسية
       const title = formData.get("title") as string;
       const slug =
         title.trim().replace(/\s+/g, "-").toLowerCase() +
@@ -48,11 +46,11 @@ export default function NewProject() {
       const location = formData.get("location") as string;
       const client_name = formData.get("client_name") as string;
       const area = formData.get("area") as string;
-      const completion_date = (formData.get("completion_date") as string) || null;
+      const completion_date =
+        (formData.get("completion_date") as string) || null;
       const status = formData.get("status") as string;
       const is_featured = formData.get("is_featured") === "on";
 
-      // 2. رفع الصورة الرئيسية (تمثل التقدم من 0% إلى 30%)
       setStatusMessage("جاري رفع الصورة الرئيسية...");
       const mainImageFile = formData.get("image") as File;
       let mainImageUrl = "";
@@ -71,36 +69,37 @@ export default function NewProject() {
       if (mainUploadError) throw mainUploadError;
 
       mainImageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/projects/${mainFileName}`;
-      
-      setProgress(30); // وصولنا هنا يعني اكتمال رفع الصورة الرئيسية
 
-      // 3. رفع صور المعرض (تمثل التقدم من 30% إلى 90%)
+      setProgress(30);
+
       const galleryFiles = formData.getAll("gallery") as File[];
       const validGalleryFiles = galleryFiles.filter((file) => file.size > 0);
       const galleryUrls: string[] = [];
 
       if (validGalleryFiles.length > 0) {
-        setStatusMessage(`جاري رفع صور المعرض (0/${validGalleryFiles.length})...`);
-        
-        // حساب مقدار الزيادة لكل صورة (نوزع 60% على عدد الصور)
+        setStatusMessage(
+          `جاري رفع صور المعرض (0/${validGalleryFiles.length})...`
+        );
+
         const progressStep = 60 / validGalleryFiles.length;
         let uploadedCount = 0;
 
         const uploadPromises = validGalleryFiles.map(async (file) => {
           const fileExt = file.name.split(".").pop();
           const fileName = `gallery_${Date.now()}_${Math.random()}.${fileExt}`;
-          
+
           const { error } = await supabase.storage
             .from("projects")
             .upload(fileName, file);
-            
+
           if (error) return null;
 
-          // تحديث التقدم بعد كل صورة
           uploadedCount++;
-          const currentProgress = 30 + (uploadedCount * progressStep);
+          const currentProgress = 30 + uploadedCount * progressStep;
           setProgress(Math.round(currentProgress));
-          setStatusMessage(`جاري رفع صور المعرض (${uploadedCount}/${validGalleryFiles.length})...`);
+          setStatusMessage(
+            `جاري رفع صور المعرض (${uploadedCount}/${validGalleryFiles.length})...`
+          );
 
           return `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/projects/${fileName}`;
         });
@@ -110,11 +109,9 @@ export default function NewProject() {
           if (url) galleryUrls.push(url);
         });
       } else {
-        // إذا لم توجد صور معرض، نقفز مباشرة لـ 90%
         setProgress(90);
       }
 
-      // 4. الحفظ في قاعدة البيانات (تمثل التقدم من 90% إلى 100%)
       setStatusMessage("جاري حفظ بيانات المشروع...");
       const { error: dbError } = await supabase.from("projects").insert({
         title,
@@ -136,17 +133,15 @@ export default function NewProject() {
       setProgress(100);
       setStatusMessage("تم النشر بنجاح!");
 
-      // تأخير بسيط 1 ثانية لرؤية رسالة النجاح قبل الانتقال
       setTimeout(() => {
         alert("تم نشر المشروع بنجاح!");
         router.push("/admin/projects");
         router.refresh();
       }, 500);
-
     } catch (error: any) {
       console.error("Error:", error);
       alert(`حدث خطأ: ${error.message || "فشل في العملية"}`);
-      setUploading(false); // إعادة تفعيل الزر عند الخطأ
+      setUploading(false);
       setProgress(0);
       setStatusMessage("");
     }
@@ -160,7 +155,6 @@ export default function NewProject() {
         onSubmit={handleSubmit}
         className="space-y-8 bg-slate-900 p-8 rounded-2xl border border-white/10 shadow-2xl"
       >
-        {/* --- القسم 1: معلومات أساسية --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="md:col-span-2">
             <label className="block mb-2 text-sm text-slate-300">
@@ -201,9 +195,7 @@ export default function NewProject() {
           </div>
         </div>
 
-        {/* --- القسم 2: تفاصيل هندسية (البيانات الجديدة) --- */}
         <div className="bg-slate-950/50 p-6 rounded-xl border border-white/5 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* العميل */}
           <div>
             <label className="block mb-2 text-sm text-blue-400 flex items-center gap-2">
               <FaUserTie /> اسم العميل (اختياري)
@@ -216,7 +208,6 @@ export default function NewProject() {
             />
           </div>
 
-          {/* المساحة */}
           <div>
             <label className="block mb-2 text-sm text-blue-400 flex items-center gap-2">
               <FaRulerCombined /> المساحة
@@ -229,7 +220,6 @@ export default function NewProject() {
             />
           </div>
 
-          {/* التاريخ */}
           <div>
             <label className="block mb-2 text-sm text-blue-400 flex items-center gap-2">
               <FaCalendarAlt /> تاريخ التسليم
@@ -241,7 +231,6 @@ export default function NewProject() {
             />
           </div>
 
-          {/* الحالة (منتهٍ / قيد الإنشاء) */}
           <div>
             <label className="block mb-2 text-sm text-slate-300">
               حالة المشروع
@@ -255,7 +244,6 @@ export default function NewProject() {
             </select>
           </div>
 
-          {/* مشروع مميز (Switch) */}
           <div className="md:col-span-2 flex items-center p-3 bg-slate-900 rounded-lg border border-white/10">
             <input
               type="checkbox"
@@ -273,7 +261,6 @@ export default function NewProject() {
           </div>
         </div>
 
-        {/* --- القسم 3: الوصف --- */}
         <div>
           <label className="block mb-2 text-sm text-slate-300">
             وصف تفصيلي
@@ -285,7 +272,6 @@ export default function NewProject() {
           ></textarea>
         </div>
 
-        {/* --- القسم 4: الصور --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="p-6 border-2 border-dashed border-yellow-500/30 rounded-xl bg-slate-950/30 hover:bg-slate-950/50 transition text-center">
             <FaCloudUploadAlt className="text-4xl text-yellow-500 mx-auto mb-4" />
@@ -322,16 +308,16 @@ export default function NewProject() {
           </div>
         </div>
 
-        {/* --- قسم الزر وشريط التقدم (الجديد) --- */}
         <div className="space-y-3">
-          {/* شريط التقدم يظهر فقط عند التحميل */}
           {uploading && (
             <div className="w-full bg-slate-950 rounded-full h-4 overflow-hidden border border-white/10 relative">
-              <div 
+              <div
                 className="bg-gradient-to-r from-yellow-500 to-yellow-300 h-full transition-all duration-300 ease-out flex items-center justify-end pr-2"
                 style={{ width: `${progress}%` }}
               >
-                <span className="text-[10px] font-bold text-slate-900">{progress}%</span>
+                <span className="text-[10px] font-bold text-slate-900">
+                  {progress}%
+                </span>
               </div>
             </div>
           )}
@@ -340,15 +326,34 @@ export default function NewProject() {
             disabled={uploading}
             type="submit"
             className={`w-full font-bold py-5 rounded-xl transition shadow-xl shadow-yellow-500/10 disabled:opacity-50 text-lg flex justify-center items-center gap-2
-              ${uploading ? 'bg-slate-800 text-slate-400 cursor-not-allowed' : 'bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-slate-900'}
+              ${
+                uploading
+                  ? "bg-slate-800 text-slate-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-400 hover:to-yellow-500 text-slate-900"
+              }
             `}
           >
             {uploading ? (
               <>
-                {/* أيقونة تحميل بسيطة */}
-                <svg className="animate-spin h-5 w-5 text-slate-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                <svg
+                  className="animate-spin h-5 w-5 text-slate-400"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
                 </svg>
                 <span>{statusMessage}</span>
               </>
@@ -357,7 +362,6 @@ export default function NewProject() {
             )}
           </button>
         </div>
-
       </form>
     </div>
   );

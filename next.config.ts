@@ -5,20 +5,20 @@ const nextConfig: NextConfig ={
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: '**.supabase.co', // هذا يسمح بتحميل الصور من أي مشروع سوبابيز
+        hostname: '**.supabase.co', 
       },
       {
         protocol: 'https',
-        hostname: 'images.unsplash.com', // للسماح بصور التجربة
+        hostname: 'images.unsplash.com', 
       },
          {
         protocol: 'https',
-        hostname: 'images.unsplash.com', // هذا هو النطاق الصحيح لصور unsplash
+        hostname: 'images.unsplash.com', 
         port: '',
       },
       {
         protocol: 'https',
-        hostname: 'unsplash.com', // أضف هذا أيضاً احتياطاً
+        hostname: 'unsplash.com', 
         port: '',
       },
     ],
