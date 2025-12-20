@@ -64,9 +64,11 @@ export default async function Hero() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {projects?.map((project) => (
-              <div
+              /* قمنا بتغيير الـ div إلى Link وإضافة خاصية href */
+              <Link
                 key={project.id}
-                className="group relative aspect-4/3 overflow-hidden rounded-xl bg-gray-900"
+                href={`/portfolio/${project.id}`} // المسار بناءً على بنية المجلدات عندك
+                className="group relative aspect-4/3 overflow-hidden rounded-xl bg-gray-900 block"
               >
                 <img
                   src={project.image_url}
@@ -81,15 +83,13 @@ export default async function Hero() {
                     {project.title}
                   </h3>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section
-        className="relative h-screen w-full overflow-hidden flex items-center justify-center"
-      >
+      <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-10000 hover:scale-110"
           style={{
