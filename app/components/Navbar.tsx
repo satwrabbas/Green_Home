@@ -36,7 +36,10 @@ export default function Navbar() {
 
         if (element) {
           setTimeout(() => {
-            const yOffset = -80;
+            const isMobile = window.innerWidth < 768;
+
+            const yOffset = isMobile ? -20 : -80;
+
             const y =
               element.getBoundingClientRect().top +
               window.pageYOffset +
@@ -71,7 +74,7 @@ export default function Navbar() {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
         scrolled
           ? "bg-slate-900/90 backdrop-blur-md border-white/10 shadow-lg"
-          : "bg-transparent border-transparent py-4 md:py-4"
+          : "bg-transparent border-transparent py-0 md:py-1"
       }`}
       id="home"
     >

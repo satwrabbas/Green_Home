@@ -17,30 +17,33 @@ export default async function Hero() {
     .select("*")
     .limit(3)
     .order("created_at", { ascending: false });
+
   return (
     <div id="home">
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 bg-linear-to-t from-background via-transparent to-transparent z-10" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
 
         <div className="relative z-20 text-center max-w-4xl px-4">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
+          <h1 className="text-3xl sm:text-4xl md:text-7xl font-bold mb-4 md:mb-6 text-transparent bg-clip-text bg-linear-to-r from-white to-gray-400">
             نبني رؤيتك.. حجراً تلو الآخر
           </h1>
-          <p className="text-xl text-text-muted mb-8 leading-relaxed">
+
+          <p className="text-base sm:text-lg md:text-xl text-text-muted mb-6 md:mb-8 leading-relaxed">
             مكتب هندسي متكامل في مصياف. ندمج بين عراقة البناء وحداثة التصميم
             لنقدم لك مساحات سكنية وتجارية استثنائية.
           </p>
-          <div className="flex gap-4 justify-center">
+
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-center">
             <Link
               href="/contact"
-              className="px-8 py-3 bg-primary hover:bg-blue-600 rounded-full font-bold transition"
+              className="w-full sm:w-auto px-6 py-2 md:px-8 md:py-3 bg-primary hover:bg-blue-600 rounded-full font-bold transition text-sm md:text-base"
             >
               احجز استشارة
             </Link>
             <Link
               href="/portfolio"
-              className="px-8 py-3 border border-white/20 hover:bg-white/10 rounded-full font-bold transition backdrop-blur-sm"
+              className="w-full sm:w-auto px-6 py-2 md:px-8 md:py-3 border border-white/20 hover:bg-white/10 rounded-full font-bold transition backdrop-blur-sm text-sm md:text-base"
             >
               شاهد أعمالنا
             </Link>
@@ -48,26 +51,25 @@ export default async function Hero() {
         </div>
       </section>
 
-      <section className="md:py-20 py-10 bg-surface/30">
+      <section className="py-10 md:py-20 bg-surface/30">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-end mb-12">
-            <h2 className="md:text-3xl text-xl font-bold border-r-4 border-accent pr-4">
+          <div className="flex justify-between items-end mb-8 md:mb-12">
+            <h2 className="text-xl md:text-3xl font-bold border-r-4 border-accent pr-3 md:pr-4">
               آخر مشاريعنا
             </h2>
             <Link
               href="/portfolio"
-              className="text-primary hover:text-accent transition"
+              className="text-sm md:text-base text-primary hover:text-accent transition"
             >
               عرض الكل &larr;
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
             {projects?.map((project) => (
-              /* قمنا بتغيير الـ div إلى Link وإضافة خاصية href */
               <Link
                 key={project.id}
-                href={`/portfolio/${project.id}`} // المسار بناءً على بنية المجلدات عندك
+                href={`/portfolio/${project.id}`}
                 className="group relative aspect-4/3 overflow-hidden rounded-xl bg-gray-900 block"
               >
                 <img
@@ -75,11 +77,11 @@ export default async function Hero() {
                   alt={project.title}
                   className="object-cover w-full h-full group-hover:scale-105 transition duration-500"
                 />
-                <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent flex flex-col justify-end p-6">
-                  <span className="text-accent text-sm font-medium">
+                <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent flex flex-col justify-end p-4 md:p-6">
+                  <span className="text-accent text-xs md:text-sm font-medium">
                     {project.category}
                   </span>
-                  <h3 className="text-xl font-bold text-white mt-1">
+                  <h3 className="text-lg md:text-xl font-bold text-white mt-1">
                     {project.title}
                   </h3>
                 </div>
@@ -89,7 +91,7 @@ export default async function Hero() {
         </div>
       </section>
 
-      <section className="relative h-screen w-full overflow-hidden flex items-center justify-center">
+      <section className="relative min-h-[85vh] md:h-screen w-full overflow-hidden flex items-center justify-center py-10 md:py-0">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat transition-transform duration-10000 hover:scale-110"
           style={{
@@ -100,41 +102,40 @@ export default async function Hero() {
           <div className="absolute inset-0 bg-slate-950/70 bg-linear-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
         </div>
 
-        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-6 animate-fade-in-up">
+        <div className="relative z-10 text-center px-4 max-w-5xl mx-auto mt-0 md:mt-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md mb-4 md:mb-6 animate-fade-in-up">
             <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-            <span className="text-xs md:text-sm text-gray-200 font-medium">
+            <span className="text-[10px] md:text-sm text-gray-200 font-medium">
               متاحون لاستلام مشاريع جديدة في مصياف وريفها
             </span>
           </div>
 
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6 drop-shadow-lg">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-4 md:mb-6 drop-shadow-lg">
             نحول الخيال إلى{" "}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-400 to-yellow-600">
               واقع معماري
             </span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto leading-relaxed">
             مكتب هندسي متكامل في مصياف. نقدم خدمات التصميم المعماري، الإكساء
             الداخلي، والحلول العقارية بأعلى معايير الجودة والاحترافية.
           </p>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 md:gap-5 mt-4 md:mt-8">
             <a
               href="/company-profile.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="group w-full sm:w-auto px-8 py-4 bg-linear-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-slate-900 font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] flex items-center justify-center gap-3"
+              className="group w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-linear-to-r from-yellow-500 to-yellow-400 hover:from-yellow-400 hover:to-yellow-300 text-slate-900 font-bold rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-[0_0_20px_rgba(234,179,8,0.3)] hover:shadow-[0_0_30px_rgba(234,179,8,0.5)] flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base"
             >
               <span>تحميل بروفايل الشركة</span>
-
-              <FaFileDownload className="text-lg transition-transform group-hover:scale-110" />
+              <FaFileDownload className="text-base md:text-lg transition-transform group-hover:scale-110" />
             </a>
 
             <Link
               href="/#testimonials"
-              className="group w-full sm:w-auto px-8 py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-yellow-500/50 text-white font-bold rounded-xl backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-3"
+              className="group w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-yellow-500/50 text-white font-bold rounded-xl backdrop-blur-md transition-all duration-300 flex items-center justify-center gap-2 md:gap-3 text-sm md:text-base"
             >
               <FaStar className="text-yellow-500 group-hover:text-yellow-400 transition-colors" />
               <span>ماذا يقول عملاؤنا؟</span>
@@ -185,7 +186,7 @@ export default async function Hero() {
         </div>
 
         <div className="absolute bottom-8 md:bottom-32 animate-bounce z-10 text-white/50">
-          <FaArrowDown size={24} />
+          <FaArrowDown size={20} className="md:w-6 md:h-6" />
         </div>
       </section>
     </div>
