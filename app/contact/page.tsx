@@ -92,7 +92,7 @@ export default function ContactPage() {
                     البريد الإلكتروني
                   </h3>
                   <p className="text-slate-400 text-sm md:text-base break-all">
-                    info@abce-s.com
+                    ourhome.msyaf@gmail.com
                   </p>
                 </div>
               </div>
