@@ -6,6 +6,7 @@ import {
   FaFileContract,
   FaCity,
   FaSearchDollar,
+  FaChevronLeft
 } from "react-icons/fa";
 
 export default function ServicesSection() {
@@ -61,50 +62,57 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-12 md:py-24 bg-slate-900 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10 md:mb-16 text-center">
-        <h2 className="text-yellow-500 font-bold tracking-wider uppercase mb-2 text-sm md:text-base">
+    <section id="services" className="py-16 md:py-24 bg-[#f8f5f0] relative text-right overflow-hidden">
+      
+      {/* عناصر خلفية زخرفية */}
+      <div className="absolute top-0 left-0 w-64 h-64 bg-[#2d4c3e]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center relative z-10">
+        <h2 className="text-[#2d4c3e] font-bold tracking-[0.2em] uppercase mb-3 text-sm md:text-base flex items-center justify-center gap-3">
+          <span className="w-8 h-[1px] bg-[#8b5e3c]"></span>
           خدماتنا
+          <span className="w-8 h-[1px] bg-[#8b5e3c]"></span>
         </h2>
-        <h3 className="text-2xl md:text-5xl font-bold text-white leading-tight">
+        <h3 className="text-3xl md:text-5xl font-bold text-[#1a2e25] leading-tight">
           حلول هندسية شاملة <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-            من الفكرة إلى المفتاح
-          </span>
+          <span className="text-[#8b5e3c]">من الفكرة.. إلى المفتاح</span>
         </h3>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
           {services.map((service) => (
             <div
               key={service.id}
-              className="group relative bg-slate-800/50 rounded-2xl p-6 md:p-8 border border-white/5 hover:border-yellow-500/50 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_rgba(234,179,8,0.1)] overflow-hidden"
+              className="group relative bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#2d4c3e]/5 shadow-[0_10px_40px_rgba(26,46,37,0.03)] hover:shadow-[0_20px_60px_rgba(139,94,60,0.1)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
             >
-              <div className="absolute top-0 right-0 text-7xl md:text-9xl font-bold text-white/5 -mr-2 -mt-2 md:-mr-4 md:-mt-4 group-hover:text-yellow-500/10 transition-colors duration-500 select-none">
+              {/* رقم الخدمة في الخلفية */}
+              <div className="absolute top-[-10px] right-[-10px] text-8xl md:text-9xl font-black text-[#2d4c3e]/5 group-hover:text-[#8b5e3c]/10 transition-colors duration-500 select-none">
                 {service.id}
               </div>
 
-              <div className="relative z-10 mb-4 md:mb-6 inline-block p-3 md:p-4 rounded-xl bg-slate-900 border border-white/10 text-yellow-500 text-2xl md:text-3xl group-hover:bg-yellow-500 group-hover:text-slate-900 transition-colors duration-300">
+              {/* الأيقونة */}
+              <div className="relative z-10 mb-8 inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#f8f5f0] text-[#2d4c3e] text-3xl md:text-4xl group-hover:bg-[#2d4c3e] group-hover:text-white transition-all duration-500 shadow-inner">
                 {service.icon}
               </div>
 
               <div className="relative z-10">
-                <h4 className="text-xl md:text-2xl font-bold text-white mb-2 md:mb-3 group-hover:text-yellow-400 transition-colors">
+                <h4 className="text-xl md:text-2xl font-bold text-[#1a2e25] mb-4 group-hover:text-[#8b5e3c] transition-colors">
                   {service.title}
                 </h4>
 
-                <p className="text-slate-400 text-sm md:text-base mb-4 md:mb-6 leading-relaxed min-h-0 md:min-h-20">
+                <p className="text-[#5c554a] text-sm md:text-base mb-6 leading-relaxed min-h-0 md:min-h-[80px]">
                   {service.description}
                 </p>
 
-                <ul className="space-y-2 border-t border-white/10 pt-4">
+                {/* قائمة المميزات */}
+                <ul className="space-y-3 border-t border-[#f8f5f0] pt-6">
                   {service.features.map((feature, idx) => (
                     <li
                       key={idx}
-                      className="flex items-center text-xs md:text-sm text-slate-300"
+                      className="flex items-center text-xs md:text-sm text-[#5c554a] font-medium"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-blue-500 ml-2 shrink-0"></span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#8b5e3c] ml-3 shrink-0"></span>
                       {feature}
                     </li>
                   ))}
@@ -114,16 +122,22 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        <div className="mt-10 md:mt-16 text-center px-2">
-          <p className="text-slate-400 mb-4 md:mb-6 text-sm md:text-base">
-            هل لديك مشروع خاص ولا تجد الخدمة المناسبة هنا؟
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center px-6 py-3 md:px-8 md:py-3 border border-transparent text-sm md:text-base font-bold rounded-full text-white bg-blue-600 hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-600/30 w-full sm:w-auto"
-          >
-            تواصل معنا لمناقشة طلبك
-          </Link>
+        {/* تواصل معنا CTA */}
+        <div className="mt-16 md:mt-24 text-center px-4">
+          <div className="inline-block p-[2px] rounded-3xl bg-gradient-to-r from-[#2d4c3e]/20 via-[#8b5e3c]/40 to-[#2d4c3e]/20">
+            <div className="bg-white rounded-[calc(1.5rem-2px)] px-8 py-10 md:px-16 md:py-12 shadow-sm">
+               <p className="text-[#5c554a] mb-6 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                هل لديك مشروع خاص ولا تجد الخدمة المناسبة هنا؟ نحن هنا لنحول مخططاتك إلى حقيقة.
+              </p>
+              <Link
+                href="/contact"
+                className="group inline-flex items-center justify-center gap-3 px-10 py-4 bg-[#2d4c3e] hover:bg-[#1a2e25] text-[#f8f5f0] font-bold rounded-2xl transition-all duration-300 shadow-xl shadow-[#2d4c3e]/20 w-full sm:w-auto overflow-hidden relative"
+              >
+                <span>تواصل معنا لمناقشة طلبك</span>
+                <FaChevronLeft className="text-xs group-hover:-translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>

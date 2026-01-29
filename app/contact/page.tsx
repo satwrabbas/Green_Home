@@ -11,6 +11,7 @@ import {
   FaMapMarkerAlt,
   FaClock,
   FaPaperPlane,
+  FaLeaf
 } from "react-icons/fa";
 
 export default function ContactPage() {
@@ -47,159 +48,133 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-slate-950 flex flex-col">
+    <main className="min-h-screen bg-[#f8f5f0] flex flex-col text-right">
       <Navbar />
 
-      <div className="pt-24 pb-8 md:pt-32 md:pb-12 bg-slate-900 text-center px-4 border-b border-white/5">
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-3 md:mb-4">
-          تواصل معنا
-        </h1>
-        <p className="text-slate-400 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
-          نحن هنا للإجابة على استفساراتك الهندسية. سواء كان لديك مشروع جديد أو
-          تحتاج لاستشارة، لا تتردد بالاتصال.
-        </p>
+      {/* الهيدر العلوي */}
+      <div className="pt-24 pb-12 md:pt-40 md:pb-20 bg-white text-center px-4 border-b border-[#2d4c3e]/5 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-[#2d4c3e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+        
+        <div className="relative z-10">
+          <h1 className="text-3xl md:text-5xl font-bold text-[#1a2e25] mb-4">
+            تواصل <span className="text-[#8b5e3c]">معنا</span>
+          </h1>
+          <p className="text-[#5c554a] text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            نحن هنا للإجابة على استفساراتك الهندسية. سواء كان لديك مشروع جديد أو
+            تحتاج لاستشارة، فريق <span className="font-bold text-[#2d4c3e]">Our Home</span> بانتظارك.
+          </p>
+        </div>
       </div>
 
-      <section className="grow py-8 md:py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-          <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
-            <h2 className="text-xl md:text-2xl font-bold text-white border-r-4 border-yellow-500 pr-3 md:pr-4">
+      <section className="grow py-12 md:py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
+          
+          {/* قسم معلومات التواصل */}
+          <div className="space-y-8 order-2 lg:order-1">
+            <h2 className="text-2xl md:text-3xl font-bold text-[#1a2e25] border-r-4 border-[#8b5e3c] pr-4">
               بيانات التواصل
             </h2>
 
-            <div className="grid gap-4 md:gap-6">
-              <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-slate-900 rounded-xl border border-white/5 hover:border-yellow-500/30 transition group">
-                <div className="bg-blue-600/20 p-2.5 md:p-3 rounded-full text-blue-500 group-hover:bg-blue-600 group-hover:text-white transition shrink-0">
-                  <FaPhoneAlt className="w-4 h-4 md:w-5 md:h-5" />
+            <div className="grid gap-6">
+              {/* الهاتف */}
+              <div className="flex items-start gap-4 p-6 bg-white rounded-3xl border border-[#2d4c3e]/5 hover:shadow-xl hover:shadow-[#2d4c3e]/5 transition-all duration-300 group">
+                <div className="bg-[#f8f5f0] p-4 rounded-2xl text-[#2d4c3e] group-hover:bg-[#2d4c3e] group-hover:text-white transition-all duration-300">
+                  <FaPhoneAlt className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-1 text-base">
-                    اتصل بنا
-                  </h3>
-                  <div className="flex flex-col text-slate-400 dir-ltr text-right text-sm md:text-base">
+                  <h3 className="text-[#1a2e25] font-bold mb-1 text-lg">اتصل بنا</h3>
+                  <div className="flex flex-col text-[#5c554a] dir-ltr text-right text-sm md:text-base font-medium">
                     <span>+963 944 809 750</span>
                     <span>+963 994 022 889</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-slate-900 rounded-xl border border-white/5 hover:border-yellow-500/30 transition group">
-                <div className="bg-pink-600/20 p-2.5 md:p-3 rounded-full text-pink-500 group-hover:bg-pink-600 group-hover:text-white transition shrink-0">
-                  <FaEnvelope className="w-4 h-4 md:w-5 md:h-5" />
+              {/* البريد */}
+              <div className="flex items-start gap-4 p-6 bg-white rounded-3xl border border-[#2d4c3e]/5 hover:shadow-xl hover:shadow-[#2d4c3e]/5 transition-all duration-300 group">
+                <div className="bg-[#f8f5f0] p-4 rounded-2xl text-[#8b5e3c] group-hover:bg-[#8b5e3c] group-hover:text-white transition-all duration-300">
+                  <FaEnvelope className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-1 text-base">
-                    البريد الإلكتروني
-                  </h3>
-                  <p className="text-slate-400 text-sm md:text-base break-all">
+                  <h3 className="text-[#1a2e25] font-bold mb-1 text-lg">البريد الإلكتروني</h3>
+                  <p className="text-[#5c554a] text-sm md:text-base break-all">
                     ourhome.msyaf@gmail.com
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-slate-900 rounded-xl border border-white/5 hover:border-yellow-500/30 transition group">
-                <div className="bg-yellow-600/20 p-2.5 md:p-3 rounded-full text-yellow-500 group-hover:bg-yellow-600 group-hover:text-white transition shrink-0">
-                  <FaMapMarkerAlt className="w-4 h-4 md:w-5 md:h-5" />
+              {/* الموقع */}
+              <div className="flex items-start gap-4 p-6 bg-white rounded-3xl border border-[#2d4c3e]/5 hover:shadow-xl hover:shadow-[#2d4c3e]/5 transition-all duration-300 group">
+                <div className="bg-[#f8f5f0] p-4 rounded-2xl text-[#2d4c3e] group-hover:bg-[#2d4c3e] group-hover:text-white transition-all duration-300">
+                  <FaMapMarkerAlt className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-1 text-base">
-                    زيارتنا
-                  </h3>
-                  <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+                  <h3 className="text-[#1a2e25] font-bold mb-1 text-lg">زيارتنا</h3>
+                  <p className="text-[#5c554a] text-sm md:text-base leading-relaxed">
                     سوريا، مصياف، شمال الكازية الشمالية ب 150 متر
                   </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 md:gap-4 p-4 md:p-6 bg-slate-900 rounded-xl border border-white/5 hover:border-yellow-500/30 transition group">
-                <div className="bg-green-600/20 p-2.5 md:p-3 rounded-full text-green-500 group-hover:bg-green-600 group-hover:text-white transition shrink-0">
-                  <FaClock className="w-4 h-4 md:w-5 md:h-5" />
+              {/* الوقت */}
+              <div className="flex items-start gap-4 p-6 bg-white rounded-3xl border border-[#2d4c3e]/5 hover:shadow-xl hover:shadow-[#2d4c3e]/5 transition-all duration-300 group">
+                <div className="bg-[#f8f5f0] p-4 rounded-2xl text-[#8b5e3c] group-hover:bg-[#8b5e3c] group-hover:text-white transition-all duration-300">
+                  <FaClock className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="text-white font-bold mb-1 text-base">
-                    أوقات العمل
-                  </h3>
-                  <p className="text-slate-400 text-sm md:text-base">
-                    السبت - الخميس: 9:00 ص - 5:00 م
-                  </p>
-                  <p className="text-slate-500 text-xs md:text-sm mt-1">
-                    الجمعة: عطلة رسمية
-                  </p>
+                  <h3 className="text-[#1a2e25] font-bold mb-1 text-lg">أوقات العمل</h3>
+                  <p className="text-[#5c554a] text-sm md:text-base">السبت - الخميس: 9:00 ص - 5:00 م</p>
+                  <p className="text-[#8b5e3c] text-xs font-bold mt-1">الجمعة: عطلة رسمية</p>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="space-y-6 md:space-y-8 order-1 lg:order-2">
-            <div className="bg-slate-900 p-5 md:p-8 rounded-2xl border border-white/10 shadow-xl">
-              <h2 className="text-xl md:text-2xl font-bold text-white mb-4 md:mb-6">
-                أرسل رسالة فورية
-              </h2>
+          {/* قسم الفورم والخريطة */}
+          <div className="space-y-8 order-1 lg:order-2">
+            <div className="bg-white p-6 md:p-10 rounded-[2.5rem] border border-[#2d4c3e]/5 shadow-2xl shadow-[#2d4c3e]/5 relative overflow-hidden">
+              <div className="absolute top-0 left-0 w-2 h-full bg-[#8b5e3c]"></div>
+              
+              <h2 className="text-2xl md:text-3xl font-bold text-[#1a2e25] mb-6">أرسل رسالة فورية</h2>
 
               {success ? (
-                <div className="bg-green-500/10 border border-green-500 text-green-500 p-6 rounded-xl text-center animate-pulse">
-                  <h3 className="font-bold text-lg md:text-xl mb-2">
-                    تم الإرسال بنجاح!
-                  </h3>
-                  <p className="text-sm md:text-base">
-                    شكراً لتواصلك معنا، سنقوم بالرد عليك في أقرب وقت ممكن.
-                  </p>
-                  <button
-                    onClick={() => setSuccess(false)}
-                    className="mt-4 text-sm underline"
-                  >
-                    إرسال رسالة أخرى
-                  </button>
+                <div className="bg-[#2d4c3e]/10 border border-[#2d4c3e] text-[#2d4c3e] p-8 rounded-3xl text-center">
+                  <FaLeaf className="mx-auto text-3xl mb-4" />
+                  <h3 className="font-bold text-xl mb-2">تم الإرسال بنجاح!</h3>
+                  <p className="text-sm md:text-base">شكراً لتواصلك، سنقوم بالرد عليك في أقرب وقت.</p>
+                  <button onClick={() => setSuccess(false)} className="mt-6 text-[#8b5e3c] font-bold underline">إرسال رسالة أخرى</button>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="space-y-4 md:space-y-6"
-                >
+                <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <label
-                      htmlFor="name"
-                      className="block text-sm font-medium text-slate-400 mb-1.5 md:mb-2"
-                    >
-                      الاسم الكامل
-                    </label>
+                    <label className="block text-sm font-bold text-[#1a2e25] mb-2">الاسم الكامل</label>
                     <input
                       type="text"
                       name="name"
                       required
-                      className="w-full bg-slate-950 border border-white/10 rounded-lg p-3 text-base text-white focus:outline-none focus:border-yellow-500 transition placeholder-slate-600"
+                      className="w-full bg-[#f8f5f0] border border-[#2d4c3e]/10 rounded-xl p-4 text-[#1a2e25] focus:outline-none focus:border-[#8b5e3c] transition-all placeholder-[#5c554a]/50"
                       placeholder="محمد العلي"
                     />
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="phone"
-                      className="block text-sm font-medium text-slate-400 mb-1.5 md:mb-2"
-                    >
-                      رقم الهاتف (واتساب)
-                    </label>
+                    <label className="block text-sm font-bold text-[#1a2e25] mb-2">رقم الهاتف (واتساب)</label>
                     <input
                       type="tel"
                       name="phone"
                       required
-                      className="w-full bg-slate-950 border border-white/10 rounded-lg p-3 text-base text-white focus:outline-none focus:border-yellow-500 transition placeholder-slate-600"
+                      className="w-full bg-[#f8f5f0] border border-[#2d4c3e]/10 rounded-xl p-4 text-[#1a2e25] focus:outline-none focus:border-[#8b5e3c] transition-all placeholder-[#5c554a]/50"
                       placeholder="09xxxxxxxx"
                     />
                   </div>
 
                   <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium text-slate-400 mb-1.5 md:mb-2"
-                    >
-                      تفاصيل الاستفسار
-                    </label>
+                    <label className="block text-sm font-bold text-[#1a2e25] mb-2">تفاصيل الاستفسار</label>
                     <textarea
                       name="message"
                       required
                       rows={4}
-                      className="w-full bg-slate-950 border border-white/10 rounded-lg p-3 text-base text-white focus:outline-none focus:border-yellow-500 transition resize-none placeholder-slate-600"
+                      className="w-full bg-[#f8f5f0] border border-[#2d4c3e]/10 rounded-xl p-4 text-[#1a2e25] focus:outline-none focus:border-[#8b5e3c] transition-all resize-none placeholder-[#5c554a]/50"
                       placeholder="أرغب بالاستفسار عن..."
                     ></textarea>
                   </div>
@@ -207,14 +182,12 @@ export default function ContactPage() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold py-3 md:py-4 rounded-lg transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-base shadow-lg"
+                    className="w-full bg-[#2d4c3e] hover:bg-[#1a2e25] text-white font-bold py-4 rounded-xl transition-all flex items-center justify-center gap-3 disabled:opacity-50 shadow-xl shadow-[#2d4c3e]/20"
                   >
-                    {loading ? (
-                      <span>جاري الإرسال...</span>
-                    ) : (
+                    {loading ? <span>جاري الإرسال...</span> : (
                       <>
                         <span>إرسال الرسالة</span>
-                        <FaPaperPlane className="text-base" />
+                        <FaPaperPlane className="text-sm" />
                       </>
                     )}
                   </button>
@@ -222,7 +195,8 @@ export default function ContactPage() {
               )}
             </div>
 
-            <div className="rounded-2xl overflow-hidden border border-white/10 h-[300px] md:h-[450px] shadow-lg relative z-0">
+            {/* الخريطة بستايل متناسق */}
+            <div className="rounded-[2.5rem] overflow-hidden border-8 border-white h-[300px] md:h-[400px] shadow-2xl relative">
               <iframe
                 title="موقع المكتب"
                 src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d4285.4664205964045!2d36.33783050962611!3d35.07056459461836!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15239361bdb9122d%3A0x194d6fc3d2c60ff6!2sOur%20Home!5e1!3m2!1sen!2sus!4v1765527215020!5m2!1sen!2sus"
@@ -231,21 +205,20 @@ export default function ContactPage() {
                 style={{ border: 0 }}
                 allowFullScreen={true}
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="brightness-[0.8] hover:brightness-100 transition duration-500"
+                className="grayscale-[20%] contrast-[1.1] hover:grayscale-0 transition-all duration-700"
               ></iframe>
             </div>
           </div>
         </div>
       </section>
 
-      <div className="py-6 text-center border-t border-white/5 bg-slate-900/30">
+      {/* رابط الإدارة بشكل هادئ */}
+      <div className="py-8 text-center bg-white/50 backdrop-blur-sm">
         <Link
           href="/login"
-          className="inline-flex items-center gap-2 text-slate-700 hover:text-yellow-500 transition-colors duration-300 text-xs md:text-sm opacity-60 hover:opacity-100"
-          title="دخول الإدارة فقط"
+          className="inline-flex items-center gap-2 text-[#5c554a] hover:text-[#8b5e3c] transition-all text-xs md:text-sm font-medium opacity-50 hover:opacity-100"
         >
-          <FaLock size={10} className="md:w-3 md:h-3" />
+          <FaLock size={10} />
           <span>الدخول للإدارة</span>
         </Link>
       </div>

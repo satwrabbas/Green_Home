@@ -1,5 +1,5 @@
 import { createClient } from "../utils/supabase/server";
-import { FaQuoteRight, FaStar } from "react-icons/fa";
+import { FaQuoteRight, FaStar, FaLeaf } from "react-icons/fa";
 import Image from "next/image";
 
 export default async function Testimonials() {
@@ -16,62 +16,72 @@ export default async function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-12 md:py-24 bg-gradient-to-b from-slate-950 to-slate-900 border-t border-white/10 relative overflow-hidden"
+      className="py-16 md:py-24 bg-white relative overflow-hidden text-right"
     >
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-600/5 rounded-full blur-3xl translate-x-[-50%] translate-y-[-50%] pointer-events-none"></div>
-      <div className="absolute top-0 left-1/2 w-96 h-1 bg-blue-500/20 blur-xl -translate-x-1/2 pointer-events-none"></div>
+      {/* عناصر زخرفية طبيعية في الخلفية */}
+      <div className="absolute top-0 right-0 w-80 h-80 bg-[#2d4c3e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b5e3c]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-yellow-500 font-bold tracking-wider uppercase mb-2 text-sm md:text-base">
-            قالوا عنا
+        
+        {/* العناوين */}
+        <div className="text-center mb-12 md:mb-20">
+          <h2 className="text-[#2d4c3e] font-bold tracking-[0.2em] uppercase mb-3 text-sm md:text-base flex items-center justify-center gap-2">
+            <FaLeaf className="text-xs text-[#8b5e3c]" /> قالوا عنا
           </h2>
-          <h3 className="text-2xl md:text-5xl font-bold text-white leading-tight">
+          <h3 className="text-3xl md:text-5xl font-bold text-[#1a2e25] leading-tight">
             شركاء النجاح{" "}
-            <span className="text-slate-500 block md:inline">
+            <span className="text-[#8b5e3c] block md:inline">
               وشهادات نعتز بها
             </span>
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+        {/* شبكة الآراء */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {reviews.map((review) => (
             <div
               key={review.id}
-              className="relative bg-slate-900/50 p-6 md:p-8 rounded-2xl border border-white/5 hover:border-yellow-500/30 transition duration-300 group"
+              className="relative bg-[#f8f5f0] p-8 md:p-10 rounded-[2.5rem] border border-[#2d4c3e]/5 hover:bg-white hover:shadow-[0_20px_50px_rgba(45,76,62,0.1)] transition-all duration-500 group"
             >
-              <div className="absolute top-4 left-4 md:top-6 md:left-6 text-slate-700 text-2xl md:text-4xl opacity-50 group-hover:text-yellow-500/20 transition-colors">
+              {/* أيقونة الاقتباس بستايل هادئ */}
+              <div className="absolute top-8 left-8 text-[#2d4c3e] text-3xl md:text-5xl opacity-10 group-hover:opacity-20 transition-opacity">
                 <FaQuoteRight />
               </div>
 
-              <div className="flex gap-1 mb-4 md:mb-6 text-yellow-500 text-sm md:text-base">
+              {/* التقييم بالنجوم - بني ترابي */}
+              <div className="flex gap-1 mb-6 text-[#8b5e3c] text-sm">
                 {[...Array(review.rating)].map((_, i) => (
                   <FaStar key={i} />
                 ))}
               </div>
 
-              <p className="text-slate-300 text-sm md:text-base mb-6 leading-relaxed relative z-10 min-h-0 md:min-h-[80px]">
+              {/* نص الرأي */}
+              <p className="text-[#5c554a] text-base md:text-lg leading-relaxed mb-8 italic relative z-10 min-h-0 md:min-h-[100px]">
                 &quot;{review.content}&quot;
               </p>
 
-              <div className="flex items-center gap-3 md:gap-4 border-t border-white/5 pt-4 md:pt-0 md:border-none">
+              {/* معلومات العميل */}
+              <div className="flex items-center gap-4 border-t border-[#2d4c3e]/10 pt-6">
                 {review.image_url ? (
                   <img
                     src={review.image_url}
                     alt={review.client_name}
-                    className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-blue-500/20 shadow-lg shadow-blue-900/20 shrink-0"
+                    className="w-14 h-14 rounded-2xl object-cover border-2 border-[#8b5e3c]/20 shadow-md shrink-0 transition-transform group-hover:scale-105"
                   />
                 ) : (
-                  <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-gradient-to-tr from-blue-500 to-blue-800 flex items-center justify-center text-white font-bold text-base md:text-lg shadow-lg shadow-blue-900/20 shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-[#2d4c3e] flex items-center justify-center text-[#f8f5f0] font-bold text-xl shadow-md shrink-0">
                     {review.client_name.charAt(0)}
                   </div>
                 )}
 
-                <div>
-                  <h4 className="text-white font-bold text-sm md:text-base">
+                <div className="flex flex-col">
+                  <h4 className="text-[#1a2e25] font-bold text-base md:text-lg">
                     {review.client_name}
                   </h4>
-                  <span className="text-xs text-slate-500">{review.role}</span>
+                  <span className="text-xs md:text-sm text-[#8b5e3c] font-medium tracking-wide">
+                    {review.role}
+                  </span>
                 </div>
               </div>
             </div>
