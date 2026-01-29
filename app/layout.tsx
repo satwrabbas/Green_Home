@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     apple: "/small-logo.png",
   },
 };
-
+//here we go
 export default function RootLayout({
   children,
 }: Readonly<{
