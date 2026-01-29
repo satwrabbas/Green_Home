@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import { Tajawal } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 
+const tajawal = Tajawal({
+  subsets: ["arabic"],
+  weight: ["200", "400", "500", "700", "800"],
+  variable: "--font-tajawal",
+});
 
 export const metadata: Metadata = {
   title: "Our Home | مكتب هندسي عقاري",
@@ -12,7 +18,7 @@ export const metadata: Metadata = {
     apple: "/small-logo.png",
   },
 };
-//here we go
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -21,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl">
       <body
-        className={` antialiased bg-slate-950 text-slate-50`}
+        className={`${tajawal.className} antialiased bg-slate-950 text-slate-50`}
       >
         <Navbar />
 
