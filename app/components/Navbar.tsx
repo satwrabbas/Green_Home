@@ -13,7 +13,6 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
 
-  // تأثير التمرير لتغيير خلفية النافبار
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -22,7 +21,6 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // معالجة التمرير السلس للروابط التي تحتوي على Hash (#)
   useEffect(() => {
     const handleHashScroll = () => {
       const hash = window.location.hash;
@@ -33,7 +31,10 @@ export default function Navbar() {
           setTimeout(() => {
             const isMobile = window.innerWidth < 768;
             const yOffset = isMobile ? -20 : -80;
-            const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+            const y =
+              element.getBoundingClientRect().top +
+              window.pageYOffset +
+              yOffset;
             window.scrollTo({ top: y, behavior: "smooth" });
           }, 300);
         }
@@ -66,8 +67,6 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          
-          {/* الشعار والهوية */}
           <Link href="/" className="flex items-center gap-3 md:gap-4 group">
             <div className="relative w-12 md:w-14 transition-transform duration-500 group-hover:rotate-[5deg]">
               <Image
@@ -92,11 +91,17 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* روابط التنقل للشاشات الكبيرة */}
           <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href || (pathname === "/" &&  window.location.hash === link.href.split("#")[1]);
+              let isActive = false;
 
+              if (link.href.includes("#")) {
+                const sectionId = link.href.split("#")[1];
+
+                isActive = pathname === "/" && activeSection === sectionId;
+              } else {
+                isActive = pathname === link.href;
+              }
               return (
                 <Link
                   key={link.name}
@@ -118,18 +123,19 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* زر الاتصال */}
           <div className="hidden md:flex items-center">
             <Link
               href="/contact"
               className="group flex items-center gap-2 bg-[#2d4c3e] hover:bg-[#8b5e3c] text-[#f8f5f0] px-6 py-2.5 rounded-xl text-sm font-bold transition-all duration-300 shadow-xl border border-white/10"
             >
-              <FaPhoneFlip size={14} className="group-hover:rotate-12 transition-transform" />
+              <FaPhoneFlip
+                size={14}
+                className="group-hover:rotate-12 transition-transform"
+              />
               <span>استشارة مجانية</span>
             </Link>
           </div>
 
-          {/* زر القائمة للجوال */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -142,7 +148,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* القائمة المنسدلة للجوال */}
       <div
         className={`md:hidden absolute top-full left-0 w-full bg-[#1a2e25] backdrop-blur-2xl border-t border-white/5 shadow-2xl overflow-hidden transition-all duration-500 ease-in-out ${
           isOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"

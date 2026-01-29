@@ -6,7 +6,7 @@ import {
   FaFileContract,
   FaCity,
   FaSearchDollar,
-  FaChevronLeft
+  FaChevronLeft,
 } from "react-icons/fa";
 
 export default function ServicesSection() {
@@ -62,9 +62,10 @@ export default function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-[#f8f5f0] relative text-right overflow-hidden">
-      
-      {/* عناصر خلفية زخرفية */}
+    <section
+      id="services"
+      className="py-16 md:py-24 bg-[#f8f5f0] relative text-right overflow-hidden"
+    >
       <div className="absolute top-0 left-0 w-64 h-64 bg-[#2d4c3e]/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 md:mb-20 text-center relative z-10">
@@ -86,12 +87,10 @@ export default function ServicesSection() {
               key={service.id}
               className="group relative bg-white rounded-[2.5rem] p-8 md:p-10 border border-[#2d4c3e]/5 shadow-[0_10px_40px_rgba(26,46,37,0.03)] hover:shadow-[0_20px_60px_rgba(139,94,60,0.1)] transition-all duration-500 hover:-translate-y-2 overflow-hidden"
             >
-              {/* رقم الخدمة في الخلفية */}
               <div className="absolute top-[-10px] right-[-10px] text-8xl md:text-9xl font-black text-[#2d4c3e]/5 group-hover:text-[#8b5e3c]/10 transition-colors duration-500 select-none">
                 {service.id}
               </div>
 
-              {/* الأيقونة */}
               <div className="relative z-10 mb-8 inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-[#f8f5f0] text-[#2d4c3e] text-3xl md:text-4xl group-hover:bg-[#2d4c3e] group-hover:text-white transition-all duration-500 shadow-inner">
                 {service.icon}
               </div>
@@ -105,7 +104,6 @@ export default function ServicesSection() {
                   {service.description}
                 </p>
 
-                {/* قائمة المميزات */}
                 <ul className="space-y-3 border-t border-[#f8f5f0] pt-6">
                   {service.features.map((feature, idx) => (
                     <li
@@ -122,12 +120,12 @@ export default function ServicesSection() {
           ))}
         </div>
 
-        {/* تواصل معنا CTA */}
         <div className="mt-16 md:mt-24 text-center px-4">
           <div className="inline-block p-[2px] rounded-3xl bg-gradient-to-r from-[#2d4c3e]/20 via-[#8b5e3c]/40 to-[#2d4c3e]/20">
             <div className="bg-white rounded-[calc(1.5rem-2px)] px-8 py-10 md:px-16 md:py-12 shadow-sm">
-               <p className="text-[#5c554a] mb-6 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
-                هل لديك مشروع خاص ولا تجد الخدمة المناسبة هنا؟ نحن هنا لنحول مخططاتك إلى حقيقة.
+              <p className="text-[#5c554a] mb-6 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                هل لديك مشروع خاص ولا تجد الخدمة المناسبة هنا؟ نحن هنا لنحول
+                مخططاتك إلى حقيقة.
               </p>
               <Link
                 href="/contact"

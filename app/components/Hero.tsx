@@ -7,7 +7,7 @@ import {
   FaHardHat,
   FaFileDownload,
   FaStar,
-  FaLeaf
+  FaLeaf,
 } from "react-icons/fa";
 import Image from "next/image";
 
@@ -22,20 +22,18 @@ export default async function Hero() {
 
   return (
     <div id="home" className="bg-[#f8f5f0] text-right">
-      {/* القسم الأول: الترحيب (Hero 1) */}
       <section className="relative min-h-[70vh] md:h-[85vh] flex items-center justify-center overflow-hidden">
-        {/* طبقة تظليل خضراء غابوية عميقة فوق الصورة */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/60 to-transparent z-10" />
-        <div 
-          className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center"
-        />
+        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center" />
 
         <div className="relative z-20 text-center max-w-4xl px-4">
           <div className="inline-flex items-center gap-2 mb-4 px-4 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm">
-             <FaLeaf className="text-[#8b5e3c] text-xs" />
-             <span className="text-white/90 text-xs md:text-sm font-medium">مكتب Our Home الهندسي</span>
+            <FaLeaf className="text-[#8b5e3c] text-xs" />
+            <span className="text-white/90 text-xs md:text-sm font-medium">
+              مكتب Our Home الهندسي
+            </span>
           </div>
-          
+
           <h1 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-4 md:mb-6 text-white leading-tight">
             نبني رؤيتك.. <span className="text-[#8b5e3c]">حجراً تلو الآخر</span>
           </h1>
@@ -60,13 +58,12 @@ export default async function Hero() {
             </Link>
           </div>
         </div>
-        
+
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 animate-bounce text-white/50 hidden md:block">
           <FaArrowDown size={24} />
         </div>
       </section>
 
-      {/* قسم المشاريع الأخيرة */}
       <section className="py-16 md:py-24 bg-[#f8f5f0]">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex justify-between items-end mb-10 md:mb-14">
@@ -74,13 +71,18 @@ export default async function Hero() {
               <h2 className="text-2xl md:text-4xl font-bold text-[#1a2e25] border-r-4 border-[#8b5e3c] pr-4">
                 آخر مشاريعنا
               </h2>
-              <p className="text-[#5c554a] mt-2 text-sm md:text-base">نصمم بذكاء، وننفذ بدقة</p>
+              <p className="text-[#5c554a] mt-2 text-sm md:text-base">
+                نصمم بذكاء، وننفذ بدقة
+              </p>
             </div>
             <Link
               href="/portfolio"
               className="group text-sm md:text-base text-[#2d4c3e] font-bold flex items-center gap-2 hover:text-[#8b5e3c] transition-colors"
             >
-              عرض الكل <span className="group-hover:translate-x-[-5px] transition-transform">←</span>
+              عرض الكل{" "}
+              <span className="group-hover:translate-x-[-5px] transition-transform">
+                ←
+              </span>
             </Link>
           </div>
 
@@ -110,12 +112,12 @@ export default async function Hero() {
         </div>
       </section>
 
-      {/* القسم الثاني: تحويل الخيال (Hero 2) */}
       <section className="relative min-h-[90vh] w-full overflow-hidden flex items-center justify-center py-20">
         <div
           className="absolute inset-0 w-full h-full bg-cover bg-center transition-transform duration-[10000ms] hover:scale-110"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')",
+            backgroundImage:
+              "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')",
           }}
         >
           <div className="absolute inset-0 bg-[#1a2e25]/80 mix-blend-multiply"></div>
@@ -130,8 +132,7 @@ export default async function Hero() {
           </div>
 
           <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold text-white leading-[1.1] mb-8">
-            نحول الخيال إلى{" "}
-            <span className="text-[#8b5e3c]">واقع معماري</span>
+            نحول الخيال إلى <span className="text-[#8b5e3c]">واقع معماري</span>
           </h2>
 
           <p className="text-base sm:text-lg md:text-xl text-[#f8f5f0]/70 mb-10 max-w-2xl mx-auto leading-relaxed">
@@ -159,18 +160,18 @@ export default async function Hero() {
           </div>
         </div>
 
-        {/* شريط الإحصائيات السفلي */}
         <div className="absolute bottom-0 left-0 right-0 z-20 hidden lg:block">
           <div className="max-w-6xl mx-auto px-4">
             <div className="bg-[#f8f5f0] border-t border-r border-l border-[#2d4c3e]/10 rounded-t-[3rem] p-10 flex justify-around items-center shadow-[0_-20px_50px_rgba(0,0,0,0.1)]">
-              
               <div className="flex items-center gap-4 group">
                 <div className="p-4 rounded-2xl bg-[#2d4c3e] text-white shadow-lg">
                   <FaProjectDiagram size={28} />
                 </div>
                 <div className="flex flex-col">
                   <span className="text-3xl font-bold text-[#1a2e25]">+50</span>
-                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">مشروع منجز</span>
+                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">
+                    مشروع منجز
+                  </span>
                 </div>
               </div>
 
@@ -182,7 +183,9 @@ export default async function Hero() {
                 </div>
                 <div className="flex flex-col">
                   <span className="text-3xl font-bold text-[#1a2e25]">+10</span>
-                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">سنوات خبرة</span>
+                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">
+                    سنوات خبرة
+                  </span>
                 </div>
               </div>
 
@@ -193,11 +196,14 @@ export default async function Hero() {
                   <FaCheckCircle size={28} />
                 </div>
                 <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-[#1a2e25]">100%</span>
-                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">التزام بالمواعيد</span>
+                  <span className="text-3xl font-bold text-[#1a2e25]">
+                    100%
+                  </span>
+                  <span className="text-sm text-[#5c554a] font-medium tracking-wide">
+                    التزام بالمواعيد
+                  </span>
                 </div>
               </div>
-
             </div>
           </div>
         </div>

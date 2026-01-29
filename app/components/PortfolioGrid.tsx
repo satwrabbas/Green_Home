@@ -32,8 +32,6 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
 
   return (
     <div className="w-full bg-[#f8f5f0] py-12 text-right">
-      
-      {/* أزرار الفلترة - ستايل طبيعي */}
       <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-16">
         {categories.map((category) => (
           <button
@@ -50,7 +48,6 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
         ))}
       </div>
 
-      {/* شبكة المشاريع */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
         {filteredProjects.map((project) => (
           <Link
@@ -66,17 +63,14 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             />
 
-            {/* التدرج اللوني - أخضر غابوي */}
             <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25] via-[#1a2e25]/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-500" />
 
-            {/* تصنيف المشروع - Badge */}
             <div className="absolute top-6 right-6">
               <span className="px-4 py-1.5 text-[10px] font-bold tracking-widest uppercase bg-[#f8f5f0] text-[#1a2e25] rounded-full shadow-lg">
                 {project.category}
               </span>
             </div>
 
-            {/* تفاصيل المشروع عند التحويم */}
             <div className="absolute bottom-0 left-0 right-0 p-8 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-[#f8f5f0] transition-colors leading-tight">
                 {project.title}
@@ -85,9 +79,11 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
               <div className="flex items-center justify-between border-t border-white/10 pt-5 mt-4">
                 <div className="flex items-center gap-2 text-[#f8f5f0]/70 text-sm">
                   <FaMapMarkerAlt className="text-[#8b5e3c]" />
-                  <span className="font-medium">{project.location || "مصياف، سوريا"}</span>
+                  <span className="font-medium">
+                    {project.location || "مصياف، سوريا"}
+                  </span>
                 </div>
-                
+
                 <div className="flex items-center gap-2 text-[#f8f5f0] bg-[#2d4c3e] px-4 py-2 rounded-xl text-xs font-bold transform translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500">
                   <span>التفاصيل</span>
                   <FaArrowLeft className="text-[10px]" />
@@ -98,15 +94,18 @@ export default function PortfolioGrid({ projects }: PortfolioGridProps) {
         ))}
       </div>
 
-      {/* حالة عدم وجود مشاريع */}
       {filteredProjects.length === 0 && (
         <div className="text-center py-32 rounded-[3rem] bg-white border-2 border-dashed border-[#2d4c3e]/10">
           <div className="w-20 h-20 bg-[#f8f5f0] rounded-full flex items-center justify-center mx-auto mb-6">
             <FaFilter className="text-[#8b5e3c] text-3xl opacity-50" />
           </div>
-          <h4 className="text-[#1a2e25] font-bold text-xl mb-2">عذراً، لا توجد نتائج</h4>
-          <p className="text-[#5c554a]">لا توجد مشاريع ضمن هذا التصنيف في الوقت الحالي.</p>
-          <button 
+          <h4 className="text-[#1a2e25] font-bold text-xl mb-2">
+            عذراً، لا توجد نتائج
+          </h4>
+          <p className="text-[#5c554a]">
+            لا توجد مشاريع ضمن هذا التصنيف في الوقت الحالي.
+          </p>
+          <button
             onClick={() => setActiveCategory("الكل")}
             className="mt-6 text-[#8b5e3c] font-bold underline"
           >

@@ -10,13 +10,12 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
-  FaLeaf
+  FaLeaf,
 } from "react-icons/fa";
 
 export default function Footer() {
   const pathname = usePathname();
 
-  // إخفاء الفوتر في صفحات لوحة التحكم
   if (pathname.startsWith("/admin") || pathname.startsWith("/login")) {
     return null;
   }
@@ -25,13 +24,11 @@ export default function Footer() {
     <footer className="bg-[#1a2e25] border-t border-[#f8f5f0]/10 pt-10 pb-6 md:pt-16 md:pb-8 text-right">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-16">
-          
-          {/* العمود الأول: الشعار والوصف */}
           <div className="space-y-5">
             <div className="flex items-center gap-3">
               <div className="relative w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center p-1">
                 <Image
-                  src="/logo-white.png" // تأكد من وجود الشعار باللون الأبيض
+                  src="/logo-white.png"
                   alt="Our Home Logo"
                   width={40}
                   height={40}
@@ -50,7 +47,8 @@ export default function Footer() {
 
             <p className="text-[#f8f5f0]/70 leading-relaxed text-sm md:text-base">
               مكتب هندسي رائد في مصياف، يجمع بين الخبرة الأكاديمية والتنفيذ
-              المتقن. نسعى لبناء مستقبل عمراني أفضل لمدينتنا من خلال تصاميم تحاكي الطبيعة وتلبي الطموح.
+              المتقن. نسعى لبناء مستقبل عمراني أفضل لمدينتنا من خلال تصاميم
+              تحاكي الطبيعة وتلبي الطموح.
             </p>
 
             <div className="flex gap-3 pt-2">
@@ -81,7 +79,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* العمود الثاني: روابط سريعة */}
           <div>
             <h3 className="text-[#f8f5f0] font-bold text-base md:text-lg mb-6 border-r-4 border-[#8b5e3c] pr-3">
               روابط سريعة
@@ -117,20 +114,22 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* العمود الثالث: مجالات العمل */}
           <div>
             <h3 className="text-[#f8f5f0] font-bold text-base md:text-lg mb-6 border-r-4 border-[#8b5e3c] pr-3">
               مجالات العمل
             </h3>
             <ul className="space-y-3 text-sm md:text-base text-[#f8f5f0]/60">
               <li className="flex items-center gap-2">
-                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> التخطيط العمراني
+                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> التخطيط
+                العمراني
               </li>
               <li className="flex items-center gap-2">
-                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> الدراسات الإنشائية
+                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> الدراسات
+                الإنشائية
               </li>
               <li className="flex items-center gap-2">
-                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> الإكساء والديكور
+                <FaLeaf className="text-[#8b5e3c] text-[10px]" /> الإكساء
+                والديكور
               </li>
               <li className="flex items-center gap-2">
                 <FaLeaf className="text-[#8b5e3c] text-[10px]" /> تعهدات البناء
@@ -138,7 +137,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* العمود الرابع: معلومات التواصل */}
           <div>
             <h3 className="text-[#f8f5f0] font-bold text-base md:text-lg mb-6 border-r-4 border-[#8b5e3c] pr-3">
               تواصل معنا
@@ -150,13 +148,20 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-3 text-[#f8f5f0]/70">
                 <FaPhoneAlt className="text-[#8b5e3c] shrink-0" />
-                <a href="tel:+963994022889" dir="ltr" className="hover:text-[#f8f5f0] transition">
+                <a
+                  href="tel:+963994022889"
+                  dir="ltr"
+                  className="hover:text-[#f8f5f0] transition"
+                >
                   +963 994 022 889
                 </a>
               </li>
               <li className="flex items-center gap-3 text-[#f8f5f0]/70">
                 <FaEnvelope className="text-[#8b5e3c] shrink-0" />
-                <a href="mailto:ourhome.msyaf@gmail.com" className="break-all hover:text-[#f8f5f0] transition">
+                <a
+                  href="mailto:ourhome.msyaf@gmail.com"
+                  className="break-all hover:text-[#f8f5f0] transition"
+                >
                   ourhome.msyaf@gmail.com
                 </a>
               </li>
@@ -164,10 +169,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* الحقوق */}
         <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center text-center gap-4">
           <p className="text-[#f8f5f0]/40 text-xs md:text-sm">
-            © {new Date().getFullYear()} Our Home Engineering. جميع الحقوق محفوظة.
+            © {new Date().getFullYear()} Our Home Engineering. جميع الحقوق
+            محفوظة.
           </p>
           <p className="text-[#f8f5f0]/30 text-xs md:text-sm flex items-center gap-1">
             تم التصميم والتطوير بواسطة{" "}

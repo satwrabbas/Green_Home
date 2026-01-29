@@ -50,7 +50,6 @@ export default async function ProjectDetails({
     <main className="min-h-screen bg-[#f8f5f0] text-right" id="portfolio">
       <Navbar />
 
-      {/* قسم الهيدر مع صورة المشروع الرئيسية */}
       <div className="relative h-[60vh] md:h-[75vh] w-full overflow-hidden">
         <Image
           src={project.image_url}
@@ -60,7 +59,6 @@ export default async function ProjectDetails({
           priority
         />
 
-        {/* تدرج لوني يندمج مع خلفية الموقع البيج */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#f8f5f0] via-[#1a2e25]/40 to-transparent"></div>
 
         <div className="absolute bottom-0 left-0 right-0 p-6 pb-12 md:p-20 max-w-7xl mx-auto z-10">
@@ -85,8 +83,6 @@ export default async function ProjectDetails({
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 lg:gap-16">
-          
-          {/* العمود الأيمن: التفاصيل والمعرض */}
           <div className="lg:col-span-2 space-y-12">
             <div className="bg-white p-8 md:p-12 rounded-[3rem] shadow-2xl shadow-[#1a2e25]/5 border border-[#2d4c3e]/5">
               <h2 className="text-2xl md:text-3xl font-bold text-[#1a2e25] mb-8 border-r-4 border-[#8b5e3c] pr-5">
@@ -114,12 +110,10 @@ export default async function ProjectDetails({
             </div>
           </div>
 
-          {/* العمود الأيسر: بطاقة البيانات (Sticky) */}
           <div className="lg:col-span-1">
             <div className="bg-white border-2 border-white rounded-[2.5rem] p-8 md:p-10 sticky top-28 shadow-2xl shadow-[#1a2e25]/5 overflow-hidden">
-              {/* زخرفة خلفية بسيطة داخل البطاقة */}
               <div className="absolute top-0 left-0 w-full h-2 bg-[#2d4c3e]"></div>
-              
+
               <h3 className="text-2xl font-bold text-[#1a2e25] mb-10 pb-4 border-b border-[#f8f5f0]">
                 بطاقة البيانات
               </h3>

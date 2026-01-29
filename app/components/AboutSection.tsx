@@ -4,7 +4,7 @@ import {
   FaHandshake,
   FaLightbulb,
   FaUserTie,
-  FaLeaf
+  FaLeaf,
 } from "react-icons/fa";
 
 export default function AboutSection() {
@@ -36,14 +36,11 @@ export default function AboutSection() {
       id="about"
       className="py-12 md:py-24 bg-[#f8f5f0] relative overflow-hidden text-right"
     >
-      {/* لمسات خلفية ناعمة - أخضر زيتوني وبني ترابي */}
       <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-[#2d4c3e]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-1/3 h-1/3 bg-[#8b5e3c]/5 rounded-full blur-3xl pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
-          
-          {/* النصوص (الترتيب 2 على الجوال و1 على الشاشات الكبيرة) */}
           <div className="space-y-6 md:space-y-8 order-2 lg:order-1">
             <div>
               <h4 className="text-[#2d4c3e] font-bold tracking-wider uppercase mb-2 text-sm md:text-base flex items-center gap-2">
@@ -57,19 +54,20 @@ export default function AboutSection() {
 
             <p className="text-[#5c554a] text-base md:text-lg leading-relaxed text-justify">
               من قلب مدينة مصياف، انطلق مكتب{" "}
-              <span className="text-[#2d4c3e] font-bold">Our Home</span> برؤية تهدف
-              للارتقاء بالواقع العمراني. ندرك أن البناء في مناطقنا يتطلب فهماً
-              خاصاً لطبيعة الأرض والمناخ، ولذوق المجتمع المحلي.
+              <span className="text-[#2d4c3e] font-bold">Our Home</span> برؤية
+              تهدف للارتقاء بالواقع العمراني. ندرك أن البناء في مناطقنا يتطلب
+              فهماً خاصاً لطبيعة الأرض والمناخ، ولذوق المجتمع المحلي.
             </p>
 
             <p className="text-[#5c554a] text-base md:text-lg leading-relaxed text-justify">
               تخصصنا لا يقتصر على صب الخرسانة؛ بل يمتد ليشمل{" "}
-              <span className="text-[#8b5e3c] font-bold border-b-2 border-[#8b5e3c]/20">فنون الإكساء الداخلي</span>، حيث
-              نحول المساحات الصامتة إلى منازل تنبض بالحياة، مع الالتزام الصارم
-              بالميزانية.
+              <span className="text-[#8b5e3c] font-bold border-b-2 border-[#8b5e3c]/20">
+                فنون الإكساء الداخلي
+              </span>
+              ، حيث نحول المساحات الصامتة إلى منازل تنبض بالحياة، مع الالتزام
+              الصارم بالميزانية.
             </p>
 
-            {/* شبكة المميزات */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8">
               {features.map((item, index) => (
                 <div
@@ -92,7 +90,6 @@ export default function AboutSection() {
             </div>
           </div>
 
-          {/* الصور (الترتيب 1 على الجوال و2 على الشاشات الكبيرة) */}
           <div className="relative order-1 lg:order-2 mb-8 lg:mb-0">
             <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl border-[8px] md:border-[12px] border-white aspect-[4/5] w-full max-w-md mx-auto lg:max-w-none">
               <img
@@ -101,7 +98,6 @@ export default function AboutSection() {
                 className="w-full h-full object-cover hover:scale-105 transition duration-700"
               />
 
-              {/* تدرج لوني دافئ فوق الصورة */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#1a2e25]/60 via-transparent to-transparent"></div>
 
               <div className="absolute bottom-6 right-6 left-6">
@@ -114,7 +110,6 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* بطاقة الإحصائيات بستايل خشبي/ترابي */}
             <div className="absolute -bottom-4 left-4 md:-bottom-10 md:-left-10 z-20 bg-[#2d4c3e] p-4 md:p-6 rounded-2xl shadow-xl flex items-center gap-3 md:gap-4 max-w-[180px] md:max-w-none text-white">
               <div className="text-3xl md:text-5xl font-bold text-[#f8f5f0]">
                 15+
@@ -126,7 +121,6 @@ export default function AboutSection() {
               </div>
             </div>
 
-            {/* زينة النقط بشكل جديد يتناسب مع الاستايل الطبيعي */}
             <div className="absolute -top-6 -right-6 md:-top-10 md:-right-10 z-0 opacity-10">
               <svg
                 width="100"
@@ -148,7 +142,6 @@ export default function AboutSection() {
               </svg>
             </div>
           </div>
-
         </div>
       </div>
     </section>

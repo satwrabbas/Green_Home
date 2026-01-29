@@ -18,13 +18,10 @@ export default async function Testimonials() {
       id="testimonials"
       className="py-16 md:py-24 bg-white relative overflow-hidden text-right"
     >
-      {/* عناصر زخرفية طبيعية في الخلفية */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-[#2d4c3e]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-[#8b5e3c]/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* العناوين */}
         <div className="text-center mb-12 md:mb-20">
           <h2 className="text-[#2d4c3e] font-bold tracking-[0.2em] uppercase mb-3 text-sm md:text-base flex items-center justify-center gap-2">
             <FaLeaf className="text-xs text-[#8b5e3c]" /> قالوا عنا
@@ -37,31 +34,26 @@ export default async function Testimonials() {
           </h3>
         </div>
 
-        {/* شبكة الآراء */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {reviews.map((review) => (
             <div
               key={review.id}
               className="relative bg-[#f8f5f0] p-8 md:p-10 rounded-[2.5rem] border border-[#2d4c3e]/5 hover:bg-white hover:shadow-[0_20px_50px_rgba(45,76,62,0.1)] transition-all duration-500 group"
             >
-              {/* أيقونة الاقتباس بستايل هادئ */}
               <div className="absolute top-8 left-8 text-[#2d4c3e] text-3xl md:text-5xl opacity-10 group-hover:opacity-20 transition-opacity">
                 <FaQuoteRight />
               </div>
 
-              {/* التقييم بالنجوم - بني ترابي */}
               <div className="flex gap-1 mb-6 text-[#8b5e3c] text-sm">
                 {[...Array(review.rating)].map((_, i) => (
                   <FaStar key={i} />
                 ))}
               </div>
 
-              {/* نص الرأي */}
               <p className="text-[#5c554a] text-base md:text-lg leading-relaxed mb-8 italic relative z-10 min-h-0 md:min-h-[100px]">
                 &quot;{review.content}&quot;
               </p>
 
-              {/* معلومات العميل */}
               <div className="flex items-center gap-4 border-t border-[#2d4c3e]/10 pt-6">
                 {review.image_url ? (
                   <img
